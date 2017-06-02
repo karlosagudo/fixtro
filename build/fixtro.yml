@@ -1,0 +1,22 @@
+ignoreFolders: ['var','vendor', 'tests', 'test']
+sourceFolders: ['./']
+composerChecker:
+  enable: true
+codeStyleFixer:
+  enable: true
+nameSpaceFixer:
+  enable: true
+phpLintChecker:
+  enable: true
+phpMessDetectorChecker:
+  enable: true
+phpUnitChecker:
+  enable: true
+psAlmChecker:
+  enable: true
+strictDeclareFixer:
+  enable: true
+esLintChecker:
+  enable: true
+badMessage: ~
+goodMessage: ~

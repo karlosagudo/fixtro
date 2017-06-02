@@ -1,0 +1,45 @@
+<?php
+
+
+namespace karlosagudo\Fixtro\CodeQualityTool\Commands;
+
+use Humbug\SelfUpdate\Strategy\GithubStrategy;
+use Humbug\SelfUpdate\Updater;
+use Symfony\Component\Console\Command\Command;
+use Symfony\Component\Console\Input\InputInterface;
+use Symfony\Component\Console\Output\OutputInterface;
+
+class SelfUpdateCommand extends Command
+{
+    /**
+     * Configure command.
+     */
+    protected function configure()
+    {
+        $this->setName('self-update')
+            ->setDescription('Self Update Fixtro');
+    }
+
+    /**
+     * @param InputInterface  $input
+     * @param OutputInterface $output
+     * @todo Update this tool to github public https://github.com/padraic/phar-updater
+     * @throws \InvalidArgumentException
+     */
+    public function execute(InputInterface $input, OutputInterface $output)
+    {
+        $updater = new Updater();
+        $updater->setStrategy(Updater::STRATEGY_GITHUB);
+        /** @var GithubStrategy $stategy */
+        $strategy = $updater->getStrategy();
+    }
+
+    /**
+     * return string
+     */
+    private function getLastTagNumber(): string
+    {
+        exec("git describe --tags $(git rev-list --tags --max-count=1)", $output);
+        return $output[0];
+    }
+}

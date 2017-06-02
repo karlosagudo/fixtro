@@ -1,0 +1,101 @@
+<?php
+
+declare(strict_types=1);
+
+namespace karlosagudo\Fixtro\CodeQualityTool\Checker;
+
+use karlosagudo\Fixtro\CodeQualityTool\Contexts\CommandContext;
+use Symfony\Component\Console\Output\OutputInterface;
+
+class CheckersRunner
+{
+	/** @var array */
+	private $checkers;
+	/** @var CommandContext */
+	private $context;
+
+	/**
+	 * CheckersRunner constructor.
+	 *
+	 * @param array          $checkers
+	 * @param CommandContext $context
+	 */
+	public function __construct(array $checkers, CommandContext $context)
+	{
+		$this->checkers = $checkers;
+		$this->context = $context;
+	}
+
+	/**
+	 * @param OutputInterface $output
+	 *
+	 * @return bool
+	 *
+	 * @throws \karlosagudo\Fixtro\CodeQualityTool\Exceptions\ExecutionStoppedByEvent
+	 */
+	public function run(OutputInterface $output)
+	{
+		$failed = false;
+		foreach ($this->checkers as $checker) {
+			$eventAnalyzerName = $this->getEventName($checker);
+			$preExecute = $this->context->throwEvent('analyzer.'.$eventAnalyzerName.'.pre',
+													 $this->context->getConfig(), []);
+			if ($preExecute === 'PASS-SIGNAL') {
+				$this->context->getLogger()->info('[SKIPPED] Skipped by event');
+				continue;
+			}
+
+			$checker->startProcess();
+			list($info, $errors) = $checker->showResults();
+			$this->context->throwEvent('analyzer.'.$eventAnalyzerName.'.after', $info, $errors);
+			$this->showInfo($output, $errors, $info);
+
+			if (count($errors)) {
+				$this->showErrors($output, $errors);
+				$failed = true;
+
+				break;
+			}
+		}
+
+		return !$failed;
+	}
+
+	/**
+	 * @param $checker
+	 *
+	 * @return string
+	 */
+	private function getEventName($checker): string
+	{
+		$shortName = (new \ReflectionClass($checker))->getShortName();
+		$analyzerConfigKey = lcfirst($shortName);
+
+		return strtolower($analyzerConfigKey);
+	}
+
+	/**
+	 * @param OutputInterface $output
+	 * @param array           $errors
+	 * @param array           $info
+	 */
+	private function showInfo(OutputInterface $output, array $errors, array $info)
+	{
+		if (!count($errors) || $output->getVerbosity() >= OutputInterface::VERBOSITY_VERBOSE) {
+			foreach ($info as $line) {
+				$output->writeln($line);
+			}
+		}
+	}
+
+	/**
+	 * @param OutputInterface $output
+	 * @param array           $errors
+	 */
+	private function showErrors(OutputInterface $output, array $errors)
+	{
+		foreach ($errors as $error) {
+			$output->writeln("<error>$error</error>");
+		}
+	}
+}

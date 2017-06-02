@@ -1,0 +1,8 @@
+use-sort:
+#    group:
+#        - karlosagudo
+#    group-type: each
+    sort-type: alph
+    sort-direction: desc
+
+strict: true

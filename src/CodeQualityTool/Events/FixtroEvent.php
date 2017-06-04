@@ -1,6 +1,6 @@
 <?php
 
-namespace karlosagudo\Fixtro\CodeQualityTool\Events;
+namespace KarlosAgudo\Fixtro\CodeQualityTool\Events;
 
 use Symfony\Component\EventDispatcher\Event;
 
@@ -45,6 +45,20 @@ class FixtroEvent extends Event
 	public function getInfo()
 	{
 		return $this->infoMessages;
+	}
+
+	public function setInfo(array $infoMessages = []): self
+	{
+		$this->infoMessages = $infoMessages;
+
+		return $this;
+	}
+
+	public function setErrors(array $errorMessages = []): self
+	{
+		$this->errorMessages = $errorMessages;
+
+		return $this;
 	}
 
 	public function getError()

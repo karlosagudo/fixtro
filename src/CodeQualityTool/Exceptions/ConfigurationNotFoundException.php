@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace karlosagudo\Fixtro\CodeQualityTool\Exceptions;
+namespace KarlosAgudo\Fixtro\CodeQualityTool\Exceptions;
 
 class ConfigurationNotFoundException extends \Exception
 {

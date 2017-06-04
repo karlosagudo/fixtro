@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace karlosagudo\Fixtro\CodeQualityTool\Commands;
+namespace KarlosAgudo\Fixtro\CodeQualityTool\Commands;
 
 use Psr\Log\LoggerInterface;
 use Symfony\Component\Console\Command\Command;
@@ -91,6 +91,10 @@ class InstallCommand extends Command
 			__DIR__.'/../../../../../../bin/composer',
 			__DIR__.'/../../../../../composer.phar',
 			__DIR__.'/../../../../../../composer.phar',
+			$this->getProjectRootPath().'/composer.phar',
+			$this->getProjectRootPath().'/composer',
+			$this->getProjectRootPath().'/vendor/bin/composer.phar',
+			$this->getProjectRootPath().'/vendor/bin/composer',
 			];
 
 		foreach ($possiblePhars as $possiblePhar) {
@@ -117,7 +121,7 @@ class InstallCommand extends Command
 	 */
 	private function installPreCommit(InputInterface $input, OutputInterface $output): bool
 	{
-		if (!is_dir($this->getProjectRootPath().'\.git')) {
+		if (!is_dir($this->getProjectRootPath().'/.git')) {
 			return true;
 		}
 
@@ -190,9 +194,15 @@ class InstallCommand extends Command
 	private function installPreCommitHook()
 	{
 		$this->logger->info('Installing as Git Hook precommit');
-		$binFolder = dirname(__DIR__.'/../../../bin');
-		exec('rm .git/hooks/pre-commit');
-		exec('ln -s '.$binFolder.'/bin/fixtro-precommit .git/hooks/pre-commit');
+		$binFolder = realpath(__DIR__.'/../../../bin/');
+		chdir($this->getProjectRootPath());
+
+		if (is_file($this->getProjectRootPath().'/.git/hooks/pre-commit') ||
+			is_link($this->getProjectRootPath().'/.git/hooks/pre-commit')
+		) {
+			unlink($this->getProjectRootPath().'/.git/hooks/pre-commit');
+		}
+		symlink($binFolder.'/fixtro-precommit', '.git/hooks/pre-commit');
 	}
 
 	/**
@@ -311,7 +321,7 @@ class InstallCommand extends Command
 	 */
 	protected function getProjectRootPath(): string
 	{
-		if (\Phar::running()) {
+		if (\Phar::running(true)) {
 			return  './';
 		}
 

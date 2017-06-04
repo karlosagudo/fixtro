@@ -1,6 +1,6 @@
 <?php
 
-namespace karlosagudo\Fixtro\CodeQualityTool\Checker;
+namespace KarlosAgudo\Fixtro\CodeQualityTool\Checker;
 
 use Symfony\Component\Process\ProcessBuilder;
 

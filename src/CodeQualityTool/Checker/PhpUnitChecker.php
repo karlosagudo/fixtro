@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace karlosagudo\Fixtro\CodeQualityTool\Checker;
+namespace KarlosAgudo\Fixtro\CodeQualityTool\Checker;
 
 use Symfony\Component\Process\ProcessBuilder;
 
@@ -10,8 +10,6 @@ class PhpUnitChecker extends AbstractChecker implements CheckerInterface
 {
 	/** @var string */
 	protected $title = 'Executing PhpUnit';
-	/** @var bool */
-	protected $notFilterIfError = true;
 
 	/** @var array */
 	protected $filterOutput = [
@@ -78,6 +76,7 @@ class PhpUnitChecker extends AbstractChecker implements CheckerInterface
 			'phpunit.xml.dist',
 			'../phpunit.xml',
 			'../build/phpunit.xml',
+			'../build/phpunit-test.xml',
 		];
 
 		// if not found use fixtro vendor one

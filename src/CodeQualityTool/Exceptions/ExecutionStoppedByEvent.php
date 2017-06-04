@@ -1,6 +1,6 @@
 <?php
 
-namespace karlosagudo\Fixtro\CodeQualityTool\Exceptions;
+namespace KarlosAgudo\Fixtro\CodeQualityTool\Exceptions;
 
 class ExecutionStoppedByEvent extends \Exception
 {

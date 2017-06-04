@@ -1,8 +1,8 @@
 <?php
 
-namespace karlosagudo\Fixtro\Tests\CodeQualityTool\Checkers;
+namespace KarlosAgudo\Fixtro\Tests\CodeQualityTool\Checkers;
 
-use karlosagudo\Fixtro\CodeQualityTool\Checker\ComposerChecker;
+use KarlosAgudo\Fixtro\CodeQualityTool\Checker\ComposerChecker;
 
 class ComposerCheckerTest extends GeneralCheckerTestCase
 {

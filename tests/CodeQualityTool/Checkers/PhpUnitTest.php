@@ -1,16 +1,16 @@
 <?php
 
-namespace karlosagudo\Fixtro\Tests\CodeQualityTool\Checkers;
+namespace KarlosAgudo\Fixtro\Tests\CodeQualityTool\Checkers;
 
-use karlosagudo\Fixtro\CodeQualityTool\Checker\PhpUnitChecker;
+use KarlosAgudo\Fixtro\CodeQualityTool\Checker\PhpUnitChecker;
 
 class PhpUnitTest extends GeneralCheckerTestCase
 {
 	public function testFunctionalOk()
 	{
-	    $this->parameters['confFile']= __DIR__ . '/../CodeExamples/PhpUnit/phpunit.xml';
+		$this->parameters['confFile'] = __DIR__.'/../CodeExamples/PhpUnit/phpunit.xml';
 
-		$filesToAnalyzer = [__DIR__ . '/../CodeExamples/PhpUnit/GoodExecutedTest.php'];
+		$filesToAnalyzer = [__DIR__.'/../CodeExamples/PhpUnit/GoodExecutedTest.php'];
 		$exit = $this->executeChecker($filesToAnalyzer, PhpUnitChecker::class);
 
 		self::assertEquals($exit, [[], []]);
@@ -19,7 +19,7 @@ class PhpUnitTest extends GeneralCheckerTestCase
 	// Long live Gödel, this test is going to fail.
 	public function testFunctionalKo()
 	{
-        $badCode = <<<EOT
+		$badCode = <<<EOT
 <?php
 
 class BadDummyTest extends \PHPUnit\Framework\TestCase
@@ -30,18 +30,18 @@ class BadDummyTest extends \PHPUnit\Framework\TestCase
     }
 }
 EOT;
-        file_put_contents(__DIR__ . '/../CodeExamples/PhpUnit/BadDummyTest.php', $badCode);
+		file_put_contents(__DIR__.'/../CodeExamples/PhpUnit/BadDummyTest.php', $badCode);
 
-		$filesToAnalyzer = [__DIR__ . '/../CodeExamples/PhpUnit/BadDummyTest.php'];
-        $this->parameters['confFile']= __DIR__ . '/../CodeExamples/PhpUnit/phpunit.xml';
+		$filesToAnalyzer = [__DIR__.'/../CodeExamples/PhpUnit/BadDummyTest.php'];
+		$this->parameters['confFile'] = __DIR__.'/../CodeExamples/PhpUnit/phpunit.xml';
 		$exit = $this->executeChecker($filesToAnalyzer, PhpUnitChecker::class, true);
 
 		self::assertEquals($exit[0][2], 'F');
-        $this->destroyBadCode(__DIR__ . '/../CodeExamples/PhpUnit/BadDummyTest.php');
+		$this->destroyBadCode(__DIR__.'/../CodeExamples/PhpUnit/BadDummyTest.php');
 	}
 
 	public function tearDown()
-    {
-        $this->destroyBadCode(__DIR__ . '/../CodeExamples/PhpUnit/BadDummyTest.php');
-    }
+	{
+		$this->destroyBadCode(__DIR__.'/../CodeExamples/PhpUnit/BadDummyTest.php');
+	}
 }

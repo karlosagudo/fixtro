@@ -1,6 +1,6 @@
 <?php
 
-namespace karlosagudo\Fixtro\Tests\CodeQualityTool\CodeExamples\CodeStyle;
+namespace KarlosAgudo\Fixtro\Tests\CodeQualityTool\CodeExamples\CodeStyle;
 
 class Good
 {

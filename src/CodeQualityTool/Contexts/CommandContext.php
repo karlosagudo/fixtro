@@ -1,10 +1,10 @@
 <?php
 
-namespace karlosagudo\Fixtro\CodeQualityTool\Contexts;
+namespace KarlosAgudo\Fixtro\CodeQualityTool\Contexts;
 
-use karlosagudo\Fixtro\CodeQualityTool\Events\FixtroEvent;
-use karlosagudo\Fixtro\CodeQualityTool\Exceptions\ConfigurationNotFoundException;
-use karlosagudo\Fixtro\CodeQualityTool\Exceptions\ExecutionStoppedByEvent;
+use KarlosAgudo\Fixtro\CodeQualityTool\Events\FixtroEvent;
+use KarlosAgudo\Fixtro\CodeQualityTool\Exceptions\ConfigurationNotFoundException;
+use KarlosAgudo\Fixtro\CodeQualityTool\Exceptions\ExecutionStoppedByEvent;
 use Symfony\Component\Console\Logger\ConsoleLogger;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\EventDispatcher\EventDispatcher;
@@ -31,8 +31,8 @@ class CommandContext
 	 * @param OutputInterface $output
 	 * @param string          $configFile
 	 *
-	 * @throws \karlosagudo\Fixtro\CodeQualityTool\Exceptions\ConfigurationNotFoundException
-	 * @throws \karlosagudo\Fixtro\CodeQualityTool\Exceptions\ExecutionStoppedByEvent
+	 * @throws \KarlosAgudo\Fixtro\CodeQualityTool\Exceptions\ConfigurationNotFoundException
+	 * @throws \KarlosAgudo\Fixtro\CodeQualityTool\Exceptions\ExecutionStoppedByEvent
 	 * @throws \Symfony\Component\Yaml\Exception\ParseException
 	 */
 	public function __construct(OutputInterface $output, string $configFile = '')
@@ -76,7 +76,7 @@ class CommandContext
 	 */
 	public function getProjectRootPath(): string
 	{
-		if (\Phar::running()) {
+		if (\Phar::running(true)) {
 			$rootPath = './';
 
 			return $rootPath;
@@ -112,9 +112,9 @@ class CommandContext
 	 *
 	 * @return array
 	 *
-	 * @throws \karlosagudo\Fixtro\CodeQualityTool\Exceptions\ExecutionStoppedByEvent
+	 * @throws \KarlosAgudo\Fixtro\CodeQualityTool\Exceptions\ExecutionStoppedByEvent
 	 * @throws \Symfony\Component\Yaml\Exception\ParseException
-	 * @throws \karlosagudo\Fixtro\CodeQualityTool\Exceptions\ConfigurationNotFoundException
+	 * @throws \KarlosAgudo\Fixtro\CodeQualityTool\Exceptions\ConfigurationNotFoundException
 	 */
 	private function parseFixtroConfig(string $configFile): array
 	{
@@ -177,7 +177,7 @@ class CommandContext
 	 */
 	private function findAndLoadComposerAutoload()
 	{
-		if (is_file($this->getProjectRootPath().'/vendor/autoload.php')) {
+		if (is_file($this->getProjectRootPath().'/vendor/autoload.php') && !$this->isFixtro()) {
 			$this->logger->info('Loading composer autoload');
 
 			return require_once $this->getProjectRootPath().'/vendor/autoload.php';
@@ -203,6 +203,17 @@ class CommandContext
 
 		if ($eventConfigLoaded->getPassSignal()) {
 			return 'PASS-SIGNAL';
+		}
+
+		return $eventConfigLoaded;
+	}
+
+	private function isFixtro()
+	{
+		if (file_exists(__DIR__.'/../../../../../bin/fixtro') ||
+			file_exists(__DIR__.'/../../../../../../bin/fixtro')
+		) { //installed in vendors/bin
+			return false;
 		}
 
 		return true;

@@ -19,9 +19,12 @@ This class should receive a FixtroEvent Class.
 Its a simple class with this methods:
  - when: Will show the datetime when this event happened
  - getInfo: get the info messages
+ - setInfo: manipulate the info messages
  - getErrors: get the error messages
+ - setErrors: set the errors
  - setStopSignal: If its set to true, fixtro will launch an exception and stop at this very moment.
  - setPassSignal: If its set to true, will not execute the checker. (THIS IS FOR CHECKERS-FIXERS ONLY)
+
 
 ## How to use this listeners:
 Example, in case you want to stop fixtro:
@@ -88,3 +91,17 @@ And the class can be as simple as:
         $event->setPassSignal();
     }      
 
+## Example - Create or Avoid an error / info File
+In this case we will listen to the post analyzer, where we have the info and the errors of the parser / checker available
+analyzer.{analyzerNameInLower}.after
+
+    events:
+      analyzer.phplintchecker.after: YourProjectNamespace\PassPostPhpLintListener
+
+Since we have access to the info / errors array, we can manipulate them:
+
+    public function __invoke(FixtroEvent $event)
+    {
+        $event->setErrors = array_filter($event->getErrors(), functionToCleanSomeErrors());
+        $event->setInfo = array_merge[$event->getInfo(), 'Added Message']; //adding message
+    }      

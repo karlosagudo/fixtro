@@ -2,15 +2,15 @@
 
 declare(strict_types=1);
 
-namespace karlosagudo\Fixtro\Tests\CodeQualityTool\Commands\Mock;
+namespace KarlosAgudo\Fixtro\Tests\CodeQualityTool\Commands\Mock;
 
-use karlosagudo\Fixtro\CodeQualityTool\Commands\GeneralCommand;
+use KarlosAgudo\Fixtro\CodeQualityTool\Commands\GeneralCommand;
 
 class CommandWithBadAnalyzers extends GeneralCommand
 {
 	protected $analyzers = [
 		[
-			'process' => 'karlosagudo\Fixtro\CodeQualityTool\Checker\ComposerChecker',
+			'process' => 'KarlosAgudo\Fixtro\CodeQualityTool\Checker\ComposerChecker',
 			'filter' => null,
 		],
 ];

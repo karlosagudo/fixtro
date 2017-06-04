@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace karlosagudo\Fixtro\CodeQualityTool\Commands;
+namespace KarlosAgudo\Fixtro\CodeQualityTool\Commands;
 
-use karlosagudo\Fixtro\CodeQualityTool\Checker\CheckersRunner;
-use karlosagudo\Fixtro\CodeQualityTool\Contexts\CommandContext;
-use karlosagudo\Fixtro\CodeQualityTool\FilterFiles\GeneralFilters;
+use KarlosAgudo\Fixtro\CodeQualityTool\Checker\CheckersRunner;
+use KarlosAgudo\Fixtro\CodeQualityTool\Contexts\CommandContext;
+use KarlosAgudo\Fixtro\CodeQualityTool\FilterFiles\GeneralFilters;
 use Psr\Log\LoggerInterface;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
@@ -33,13 +33,16 @@ class GeneralCommand extends Command
 	/** @var CommandContext */
 	private $context;
 
+	/** @var array */
+	protected $analyzers;
+
 	/**
 	 * @param InputInterface  $input
 	 * @param OutputInterface $output
 	 *
 	 * @SuppressWarnings(PHPMD.UnusedFormalParameter)
 	 *
-	 * @throws \karlosagudo\Fixtro\CodeQualityTool\Exceptions\ConfigurationNotFoundException
+	 * @throws \KarlosAgudo\Fixtro\CodeQualityTool\Exceptions\ConfigurationNotFoundException
 	 */
 	protected function initialize(InputInterface $input, OutputInterface $output)
 	{
@@ -55,7 +58,7 @@ class GeneralCommand extends Command
 	 *
 	 * @return int
 	 *
-	 * @throws \karlosagudo\Fixtro\CodeQualityTool\Exceptions\ExecutionStoppedByEvent
+	 * @throws \KarlosAgudo\Fixtro\CodeQualityTool\Exceptions\ExecutionStoppedByEvent
 	 * @throws \Exception
 	 * @throws \InvalidArgumentException
 	 */
@@ -85,7 +88,7 @@ class GeneralCommand extends Command
 	 *
 	 * @return array
 	 *
-	 * @throws \karlosagudo\Fixtro\CodeQualityTool\Exceptions\ExecutionStoppedByEvent
+	 * @throws \KarlosAgudo\Fixtro\CodeQualityTool\Exceptions\ExecutionStoppedByEvent
 	 * @throws \InvalidArgumentException
 	 */
 	public function createCheckers(array $files, OutputInterface $output)
@@ -110,7 +113,7 @@ class GeneralCommand extends Command
 			$filter = $analyzer['filter'];
 			$filesFound = $this->applyFilter($filterClass, $filter);
 			if (!$filesFound && $filter !== 'getNullFiles') {
-				//continue;
+				continue;
 			}
 			$this->context->throwEvent('analyzer.'.$eventAnalyzerName.'.files', $filesFound);
 

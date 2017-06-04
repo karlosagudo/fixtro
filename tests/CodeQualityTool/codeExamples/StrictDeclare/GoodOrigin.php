@@ -1,5 +1,5 @@
 <?php
-namespace karlosagudo\Fixtro\Tests\CodeQualityTool\CodeExamples\StrictDeclare;
+namespace KarlosAgudo\Fixtro\Tests\CodeQualityTool\CodeExamples\StrictDeclare;
 
 class Good
 {

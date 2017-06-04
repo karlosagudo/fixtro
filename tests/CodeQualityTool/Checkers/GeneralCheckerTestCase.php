@@ -1,6 +1,6 @@
 <?php
 
-namespace karlosagudo\Fixtro\Tests\CodeQualityTool\Checkers;
+namespace KarlosAgudo\Fixtro\Tests\CodeQualityTool\Checkers;
 
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Console\Output\ConsoleOutput;
@@ -23,10 +23,10 @@ abstract class GeneralCheckerTestCase extends TestCase
 		return $checker->showResults();
 	}
 
-    protected function destroyBadCode($file)
-    {
-        if (file_exists($file)) {
-            unlink($file);
-        }
-    }
+	protected function destroyBadCode($file)
+	{
+		if (file_exists($file)) {
+			unlink($file);
+		}
+	}
 }

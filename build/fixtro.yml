@@ -18,5 +18,7 @@ strictDeclareFixer:
   enable: true
 esLintChecker:
   enable: true
+phpStanChecker:
+  enable: true
 badMessage: ~
 goodMessage: ~

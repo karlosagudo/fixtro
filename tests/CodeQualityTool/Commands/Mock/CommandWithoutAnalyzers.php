@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace karlosagudo\Fixtro\Tests\CodeQualityTool\Commands\Mock;
+namespace KarlosAgudo\Fixtro\Tests\CodeQualityTool\Commands\Mock;
 
-use karlosagudo\Fixtro\CodeQualityTool\Commands\GeneralCommand;
+use KarlosAgudo\Fixtro\CodeQualityTool\Commands\GeneralCommand;
 
 class CommandWithoutAnalyzers extends GeneralCommand
 {

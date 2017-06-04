@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace karlosagudo\Fixtro\CodeQualityTool\Checker;
+namespace KarlosAgudo\Fixtro\CodeQualityTool\Checker;
 
 class ComposerChecker extends AbstractChecker implements CheckerInterface
 {

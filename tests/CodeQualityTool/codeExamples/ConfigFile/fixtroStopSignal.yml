@@ -19,6 +19,6 @@ strictDeclareFixer:
 esLintChecker:
   enable: false
 events:
-  config.post_load: karlosagudo\Fixtro\Tests\CodeQualityTool\CodeExamples\Events\PostLoad
+  config.post_load: KarlosAgudo\Fixtro\Tests\CodeQualityTool\CodeExamples\Events\PostLoad
 badMessage: ~
 goodMessage: ~

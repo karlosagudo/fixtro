@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace karlosagudo\Fixtro\CodeQualityTool\Checker;
+namespace KarlosAgudo\Fixtro\CodeQualityTool\Checker;
 
 use Symfony\Component\Process\ProcessBuilder;
 
@@ -56,8 +56,8 @@ class PsAlmChecker extends AbstractChecker implements CheckerInterface
 			'build/psalm.xml',
 			'psalm.xml',
 			'psalm.xml.dist',
-			'/../psalm.xml',
-			'/../build/psalm.xml',
+			'../psalm.xml',
+			'../build/psalm.xml',
 		];
 
 		// if not found use fixtro vendor one

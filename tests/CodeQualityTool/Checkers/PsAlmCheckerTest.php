@@ -1,16 +1,15 @@
 <?php
 
-namespace karlosagudo\Fixtro\Tests\CodeQualityTool\Checkers;
+namespace KarlosAgudo\Fixtro\Tests\CodeQualityTool\Checkers;
 
-use karlosagudo\Fixtro\CodeQualityTool\Checker\NameSpaceFixer;
-use karlosagudo\Fixtro\CodeQualityTool\Checker\PsAlmChecker;
+use KarlosAgudo\Fixtro\CodeQualityTool\Checker\PsAlmChecker;
 use Symfony\Component\Filesystem\Filesystem;
 
 class PsAlmCheckerTest extends GeneralCheckerTestCase
 {
 	public function testFunctionalOk()
 	{
-		$filesToAnalyzer = [__DIR__ . '/../CodeExamples/PsAlm/Good.php'];
+		$filesToAnalyzer = [__DIR__.'/../CodeExamples/PsAlm/Good.php'];
 		$exit = $this->executeChecker($filesToAnalyzer, PsAlmChecker::class);
 
 		self::assertEquals($exit, [[], []]);
@@ -18,7 +17,7 @@ class PsAlmCheckerTest extends GeneralCheckerTestCase
 
 	public function testFunctionalKo()
 	{
-		$filesToAnalyzer = [__DIR__ . '/../CodeExamples/PsAlm/Bad.php'];
+		$filesToAnalyzer = [__DIR__.'/../CodeExamples/PsAlm/Bad.php'];
 
 		$exit = $this->executeChecker($filesToAnalyzer, PsAlmChecker::class, true);
 
@@ -29,8 +28,8 @@ class PsAlmCheckerTest extends GeneralCheckerTestCase
 	{
 		$fs = new Filesystem();
 		$fs->copy(
-			__DIR__ . '/../CodeExamples/NamespacesPhp/BadOrigin.php',
-            __DIR__ . '/../CodeExamples/NamespacesPhp/Bad.php',
+			__DIR__.'/../CodeExamples/NamespacesPhp/BadOrigin.php',
+			__DIR__.'/../CodeExamples/NamespacesPhp/Bad.php',
 			true
 		);
 	}

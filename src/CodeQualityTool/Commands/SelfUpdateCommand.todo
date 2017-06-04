@@ -1,7 +1,7 @@
 <?php
 
 
-namespace karlosagudo\Fixtro\CodeQualityTool\Commands;
+namespace KarlosAgudo\Fixtro\CodeQualityTool\Commands;
 
 use Humbug\SelfUpdate\Strategy\GithubStrategy;
 use Humbug\SelfUpdate\Updater;

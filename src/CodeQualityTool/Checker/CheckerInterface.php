@@ -8,7 +8,7 @@ declare(strict_types=1);
  * Time: 18:51.
  */
 
-namespace karlosagudo\Fixtro\CodeQualityTool\Checker;
+namespace KarlosAgudo\Fixtro\CodeQualityTool\Checker;
 
 interface CheckerInterface
 {

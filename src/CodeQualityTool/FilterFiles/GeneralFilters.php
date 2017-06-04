@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace karlosagudo\Fixtro\CodeQualityTool\FilterFiles;
+namespace KarlosAgudo\Fixtro\CodeQualityTool\FilterFiles;
 
 class GeneralFilters
 {

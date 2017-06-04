@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace karlosagudo\Fixtro\CodeQualityTool\Commands;
+namespace KarlosAgudo\Fixtro\CodeQualityTool\Commands;
 
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -19,15 +19,15 @@ final class FixEntireCommand extends GeneralCommand
 	 */
 	protected $analyzers = [
 		[
-			'process' => 'karlosagudo\Fixtro\CodeQualityTool\Checker\ComposerChecker',
+			'process' => 'KarlosAgudo\Fixtro\CodeQualityTool\Checker\ComposerChecker',
 			'filter' => 'getComposerFiles',
 		],
 		[
-			'process' => 'karlosagudo\Fixtro\CodeQualityTool\Checker\PhpLintChecker',
+			'process' => 'KarlosAgudo\Fixtro\CodeQualityTool\Checker\PhpLintChecker',
 			'filter' => 'getPhpFiles',
 		],
 		[
-			'process' => 'karlosagudo\Fixtro\CodeQualityTool\Checker\CodeStyleFixer',
+			'process' => 'KarlosAgudo\Fixtro\CodeQualityTool\Checker\CodeStyleFixer',
 			'filter' => 'getPhpFiles',
 			'parameters' => [
 				'ruleFile' => '--rules=@Symfony',
@@ -37,26 +37,30 @@ final class FixEntireCommand extends GeneralCommand
 			],
 		],
 		[
-			'process' => 'karlosagudo\Fixtro\CodeQualityTool\Checker\NameSpaceFixer',
+			'process' => 'KarlosAgudo\Fixtro\CodeQualityTool\Checker\NameSpaceFixer',
 			'filter' => 'getPhpFiles',
 			'parameters' => ['configFolder' => './build'],
 		],
 		[
-			'process' => 'karlosagudo\Fixtro\CodeQualityTool\Checker\PhpMessDetectorChecker',
+			'process' => 'KarlosAgudo\Fixtro\CodeQualityTool\Checker\PhpMessDetectorChecker',
 			'filter' => 'getPhpFiles',
 			'parameters' => ['ruleFile' => '/build/phpmd.xml'],
 		],
 		[
-			'process' => 'karlosagudo\Fixtro\CodeQualityTool\Checker\PhpUnitChecker',
+			'process' => 'KarlosAgudo\Fixtro\CodeQualityTool\Checker\PhpUnitChecker',
 			'filter' => 'getNullFiles',
 		],
 		[
-			'process' => 'karlosagudo\Fixtro\CodeQualityTool\Checker\PsAlmChecker',
+			'process' => 'KarlosAgudo\Fixtro\CodeQualityTool\Checker\PsAlmChecker',
 			'filter' => 'getPhpFiles',
 		],
 		[
-			'process' => 'karlosagudo\Fixtro\CodeQualityTool\Checker\EsLintChecker',
+			'process' => 'KarlosAgudo\Fixtro\CodeQualityTool\Checker\EsLintChecker',
 			'filter' => 'getJsFiles',
+		],
+		[
+			'process' => 'KarlosAgudo\Fixtro\CodeQualityTool\Checker\PhpStanChecker',
+			'filter' => 'getPhpFiles',
 		],
 ];
 
@@ -100,7 +104,7 @@ final class FixEntireCommand extends GeneralCommand
 
 		$finder = new Finder();
 		$finder
-			->files('*')
+			->files()
 			->in($srcFolder)
 		;
 

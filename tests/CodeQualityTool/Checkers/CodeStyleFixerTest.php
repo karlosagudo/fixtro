@@ -1,14 +1,14 @@
 <?php
 
-namespace karlosagudo\Fixtro\Tests\CodeQualityTool\Checkers;
+namespace KarlosAgudo\Fixtro\Tests\CodeQualityTool\Checkers;
 
-use karlosagudo\Fixtro\CodeQualityTool\Checker\CodeStyleFixer;
+use KarlosAgudo\Fixtro\CodeQualityTool\Checker\CodeStyleFixer;
 
 class CodeStyleFixerTest extends GeneralCheckerTestCase
 {
 	public function testFunctionalOk()
 	{
-		$filesToAnalyzer = [__DIR__ . '/../CodeExamples/CodeStylePhp/Good.php'];
+		$filesToAnalyzer = [__DIR__.'/../CodeExamples/CodeStylePhp/Good.php'];
 		$exit = $this->executeChecker($filesToAnalyzer, CodeStyleFixer::class);
 
 		self::assertEquals($exit, [[], []]);
@@ -16,7 +16,7 @@ class CodeStyleFixerTest extends GeneralCheckerTestCase
 
 	public function testFunctionalKo()
 	{
-		$filesToAnalyzer = [__DIR__ . '/../CodeExamples/CodeStylePhp/Bad.php'];
+		$filesToAnalyzer = [__DIR__.'/../CodeExamples/CodeStylePhp/Bad.php'];
 		$this->parameters = [
 			'extraParams' => '--dry-run',
 			'afterParams' => ' --diff',

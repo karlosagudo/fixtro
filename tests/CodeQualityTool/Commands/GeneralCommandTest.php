@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace karlosagudo\Fixtro\Tests\CodeQualityTool\Commands;
+namespace KarlosAgudo\Fixtro\Tests\CodeQualityTool\Commands;
 
-use karlosagudo\Fixtro\Tests\CodeQualityTool\Commands\Mock\CommandWithBadAnalyzers;
-use karlosagudo\Fixtro\Tests\CodeQualityTool\Commands\Mock\CommandWithBadFilter;
-use karlosagudo\Fixtro\Tests\CodeQualityTool\Commands\Mock\CommandWithoutAnalyzers;
+use KarlosAgudo\Fixtro\Tests\CodeQualityTool\Commands\Mock\CommandWithBadAnalyzers;
+use KarlosAgudo\Fixtro\Tests\CodeQualityTool\Commands\Mock\CommandWithBadFilter;
+use KarlosAgudo\Fixtro\Tests\CodeQualityTool\Commands\Mock\CommandWithoutAnalyzers;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Console\Output\Output;
 

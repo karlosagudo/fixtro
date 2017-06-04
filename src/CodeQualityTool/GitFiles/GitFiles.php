@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace karlosagudo\Fixtro\CodeQualityTool\GitFiles;
+namespace KarlosAgudo\Fixtro\CodeQualityTool\GitFiles;
 
 /**
  * Class GitFiles.
@@ -70,12 +70,12 @@ class GitFiles
 			}
 
 			foreach ($this->sourceFolders as $sourceFolder) {
-				if (!preg_match($sourceFolder, $elem)) {
-					return false;
+				if (preg_match($sourceFolder, $elem)) {
+					return true;
 				}
 			}
 
-			return true;
+			return false;
 		});
 	}
 

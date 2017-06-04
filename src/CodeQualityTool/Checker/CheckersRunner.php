@@ -2,9 +2,10 @@
 
 declare(strict_types=1);
 
-namespace karlosagudo\Fixtro\CodeQualityTool\Checker;
+namespace KarlosAgudo\Fixtro\CodeQualityTool\Checker;
 
-use karlosagudo\Fixtro\CodeQualityTool\Contexts\CommandContext;
+use KarlosAgudo\Fixtro\CodeQualityTool\Contexts\CommandContext;
+use KarlosAgudo\Fixtro\CodeQualityTool\Events\FixtroEvent;
 use Symfony\Component\Console\Output\OutputInterface;
 
 class CheckersRunner
@@ -31,7 +32,7 @@ class CheckersRunner
 	 *
 	 * @return bool
 	 *
-	 * @throws \karlosagudo\Fixtro\CodeQualityTool\Exceptions\ExecutionStoppedByEvent
+	 * @throws \KarlosAgudo\Fixtro\CodeQualityTool\Exceptions\ExecutionStoppedByEvent
 	 */
 	public function run(OutputInterface $output)
 	{
@@ -47,7 +48,13 @@ class CheckersRunner
 
 			$checker->startProcess();
 			list($info, $errors) = $checker->showResults();
-			$this->context->throwEvent('analyzer.'.$eventAnalyzerName.'.after', $info, $errors);
+			$result = $this->context->throwEvent('analyzer.'.$eventAnalyzerName.'.after', $info, $errors);
+
+			if (get_class($result) === FixtroEvent::class) {
+				$info = $result->getInfo();
+				$errors = $result->getError();
+			}
+
 			$this->showInfo($output, $errors, $info);
 
 			if (count($errors)) {

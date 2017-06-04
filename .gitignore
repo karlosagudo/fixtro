@@ -1,0 +1,8 @@
+.idea/
+vendor/
+bin/
+!bin/fixtro
+!bin/php_no_xdebug
+!bin/fixtro-precommit
+build/logs/
+.php_cs.cache

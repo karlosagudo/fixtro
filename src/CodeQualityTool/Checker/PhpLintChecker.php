@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace karlosagudo\Fixtro\CodeQualityTool\Checker;
+namespace KarlosAgudo\Fixtro\CodeQualityTool\Checker;
 
 use Symfony\Component\Process\ProcessBuilder;
 
@@ -18,6 +18,7 @@ class PhpLintChecker extends AbstractChecker implements CheckerInterface
 		'found',
 		'^\.',
 		'100 %',
+		'Checked',
 ];
 
 	/**

@@ -1,13 +1,13 @@
 <?php
 
-namespace karlosagudo\Fixtro\Tests\CodeQualityTool\codeExamples\Events;
+namespace KarlosAgudo\Fixtro\Tests\CodeQualityTool\Events;
 
-use karlosagudo\Fixtro\CodeQualityTool\Events\FixtroEvent;
+use KarlosAgudo\Fixtro\CodeQualityTool\Events\FixtroEvent;
 
 class PostLoad extends FixtroEvent
 {
-    public function __invoke(FixtroEvent $event)
-    {
-        $event->setStopSignal(true);
-    }
+	public function __invoke(FixtroEvent $event)
+	{
+		$event->setStopSignal(true);
+	}
 }

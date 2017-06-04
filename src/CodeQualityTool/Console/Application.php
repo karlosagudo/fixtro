@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace karlosagudo\Fixtro\CodeQualityTool\Console;
+namespace KarlosAgudo\Fixtro\CodeQualityTool\Console;
 
-use karlosagudo\Fixtro\CodeQualityTool\Commands\FixBranchCommand;
-use karlosagudo\Fixtro\CodeQualityTool\Commands\FixEntireCommand;
-use karlosagudo\Fixtro\CodeQualityTool\Commands\FixPreCommitCommand;
-use karlosagudo\Fixtro\CodeQualityTool\Commands\InstallCommand;
+use KarlosAgudo\Fixtro\CodeQualityTool\Commands\FixBranchCommand;
+use KarlosAgudo\Fixtro\CodeQualityTool\Commands\FixEntireCommand;
+use KarlosAgudo\Fixtro\CodeQualityTool\Commands\FixPreCommitCommand;
+use KarlosAgudo\Fixtro\CodeQualityTool\Commands\InstallCommand;
 use Symfony\Component\Console\Application as BaseApplication;
 
 class Application extends BaseApplication

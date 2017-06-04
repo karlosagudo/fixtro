@@ -20,7 +20,10 @@ class PhpStanCheckerTest extends GeneralCheckerTestCase
     {
         $filesToAnalyzer = [__DIR__ . '/../CodeExamples/PhpStan/Bad.php'];
         $exit = $this->executeChecker($filesToAnalyzer, PhpStanChecker::class);
-
+        if (isset($exit[1][0])) {
+            self::assertContains('Bad.php', $exit[1][0]);
+            return true;
+        }
         self::assertContains('Bad.php', $exit[0][1]);
     }
 }

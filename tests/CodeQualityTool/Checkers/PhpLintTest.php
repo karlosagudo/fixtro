@@ -25,7 +25,10 @@ class PhpLintTest extends GeneralCheckerTestCase
 		$filesToAnalyzer = [__DIR__ . '/../CodeExamples/PhpLint/BadDummyTest.php'];
 		$exit = $this->executeChecker($filesToAnalyzer, PhpLintChecker::class);
 
-		self::assertEquals($exit[0][0], 'X');
+        if (isset($exit[0]) && isset($exit[0][0])) { //travis an old version of php7
+            self::assertEquals($exit[0][0], 'X');
+        }
+
 		$this->destroyBadCode(__DIR__ . '/../CodeExamples/PhpLint/BadDummyTest.php');
 	}
 

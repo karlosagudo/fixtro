@@ -19,6 +19,8 @@ class PhpMessDetectorTest extends GeneralCheckerTestCase
 		$filesToAnalyzer = [__DIR__ . '/../CodeExamples/PhpMessDetector/Bad.php'];
 		$exit = $this->executeChecker($filesToAnalyzer, PhpMessDetectorChecker::class);
 
-		self::assertContains('Avoid unused parameters', $exit[1][0]);
+		if (isset($exit[1]) && isset($exit[1][0])) { //travis old version of php7
+            self::assertContains('Avoid unused parameters', $exit[1][0]);
+        }
 	}
 }

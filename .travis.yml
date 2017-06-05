@@ -11,7 +11,7 @@ install:
     - composer update --prefer-source --no-interaction
 
 script:
-    - bin/phpunit --coverage-text -c build/phpunit-coverage.xml
+    - bin/phpunit -c build/phpunit.xml
 
 notifications:
     email: false

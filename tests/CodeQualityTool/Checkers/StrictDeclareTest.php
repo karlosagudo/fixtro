@@ -9,9 +9,9 @@ class StrictDeclareTest extends GeneralCheckerTestCase
 {
 	public function testFunctionalOk()
 	{
-		$filesToAnalyzer = [__DIR__.'/../CodeExamples/StrictDeclare/Good.php'];
+		$filesToAnalyzer = [__DIR__ . '/../CodeExamples/StrictDeclare/Good.php'];
 		$exit = $this->executeChecker($filesToAnalyzer, StrictDeclareFixer::class);
-		$arCorrectedFile = file(__DIR__.'/../CodeExamples/NamespacesPhp/Good.php');
+		$arCorrectedFile = file(__DIR__ . '/../CodeExamples/NamespacesPhp/Good.php');
 
 		self::assertNotEquals('strict_types', $arCorrectedFile[0]);
 	}
@@ -20,8 +20,8 @@ class StrictDeclareTest extends GeneralCheckerTestCase
 	{
 		$fs = new Filesystem();
 		$fs->copy(
-			__DIR__.'/../CodeExamples/StrictDeclare/GoodOrigin.php',
-			__DIR__.'/../CodeExamples/StrictDeclare/Good.php',
+			__DIR__ . '/../CodeExamples/StrictDeclare/GoodOrigin.php',
+            __DIR__ . '/../CodeExamples/StrictDeclare/Good.php',
 			true
 		);
 	}

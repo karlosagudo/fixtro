@@ -14,7 +14,7 @@ class CheckersRunnerTest extends TestCase
 {
 	public function testCheckersRunner()
 	{
-		$filesToAnalyzer = [__DIR__.'/../CodeExamples/StrictDeclare/Good.php'];
+		$filesToAnalyzer = [__DIR__ . '/../CodeExamples/StrictDeclare/Good.php'];
 		$output = $this->createMock(ConsoleOutput::class);
 		$output->expects(self::atLeastOnce())->method('writeln');
 		$checker = new StrictDeclareFixer($filesToAnalyzer, $output, []);
@@ -26,7 +26,7 @@ class CheckersRunnerTest extends TestCase
 
 	public function testEventDispatcherRunner()
 	{
-		$filesToAnalyzer = [__DIR__.'/../CodeExamples/StrictDeclare/Good.php'];
+		$filesToAnalyzer = [__DIR__ . '/../CodeExamples/StrictDeclare/Good.php'];
 		$output = $this->createMock(ConsoleOutput::class);
 		$output->expects(self::atLeastOnce())->method('writeln');
 		$checker = new StrictDeclareFixer($filesToAnalyzer, $output, []);
@@ -42,7 +42,7 @@ class CheckersRunnerTest extends TestCase
 
 	public function testEventStopSignalRunner()
 	{
-		$filesToAnalyzer = [__DIR__.'/../CodeExamples/StrictDeclare/Good.php'];
+		$filesToAnalyzer = [__DIR__ . '/../CodeExamples/StrictDeclare/Good.php'];
 		$output = $this->createMock(ConsoleOutput::class);
 		//$output->expects(self::atLeastOnce())->method('writeln');
 		$checker = new StrictDeclareFixer($filesToAnalyzer, $output, []);
@@ -50,7 +50,7 @@ class CheckersRunnerTest extends TestCase
 		$eventConfigLoaded->setStopSignal();
 
 		try {
-			$commandContext = new CommandContext($output, __DIR__.'/../CodeExamples/ConfigFile/fixtroStopSignal.yml');
+			$commandContext = new CommandContext($output, __DIR__ . '/../CodeExamples/ConfigFile/fixtroStopSignal.yml');
 			$runner = new CheckersRunner([$checker], $commandContext);
 			$runner->run($output);
 		} catch (\Exception $e) {

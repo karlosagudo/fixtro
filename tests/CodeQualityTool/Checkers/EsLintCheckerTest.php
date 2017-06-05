@@ -17,7 +17,7 @@ class EsLintCheckerTest extends GeneralCheckerTestCase
 
 	public function testFunctionalOk()
 	{
-		$filesToAnalyzer = [__DIR__.'/../CodeExamples/JS/GoodJs.js'];
+		$filesToAnalyzer = [__DIR__ . '/../CodeExamples/JS/GoodJs.js'];
 		$exit = $this->executeChecker($filesToAnalyzer, EsLintChecker::class);
 
 		self::assertEquals($exit, [[], []]);
@@ -25,7 +25,7 @@ class EsLintCheckerTest extends GeneralCheckerTestCase
 
 	public function testFunctionalOkVerbose()
 	{
-		$filesToAnalyzer = [__DIR__.'/../CodeExamples/JS/GoodJs.js'];
+		$filesToAnalyzer = [__DIR__ . '/../CodeExamples/JS/GoodJs.js'];
 		$exit = $this->executeChecker($filesToAnalyzer, EsLintChecker::class, true);
 
 		self::assertContains('<info>Executed :</info><options=bold>', $exit[0][0]);
@@ -33,7 +33,7 @@ class EsLintCheckerTest extends GeneralCheckerTestCase
 
 	public function testFunctionalKo()
 	{
-		$filesToAnalyzer = [__DIR__.'/../CodeExamples/JS/BadJs.js'];
+		$filesToAnalyzer = [__DIR__ . '/../CodeExamples/JS/BadJs.js'];
 		$exit = $this->executeChecker($filesToAnalyzer, EsLintChecker::class);
 		$info = $exit[0][0];
 		$error = $exit[1];

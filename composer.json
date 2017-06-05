@@ -7,9 +7,14 @@
   "authors": [
     {
       "name": "karlosagudo",
-      "email": "karlosagudo1978@gmail.com"
+      "email": "karlosagudo1978+fixtro@gmail.com",
+      "role": "Developer"
+
     }
   ],
+  "support": {
+    "email": "karlosagudo1978+fixtro@gmail.com"
+  },
   "require": {
     "php":"^7.0",
     "symfony/console": "^2.0 || ^3.0",

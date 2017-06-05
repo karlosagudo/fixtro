@@ -80,12 +80,18 @@ class GitFiles
 	}
 
 	/**
-	 * @param $folders
+	 * @param array $folders
+	 *
+	 * @return array
 	 */
-	private function extractFolders($folders)
+	private function extractFolders(array $folders): array
 	{
 		$returned = [];
 		foreach ($folders as $folder) {
+			if ($folder === './' || $folder === '') {
+				$returned[] = '/.*/';
+				continue;
+			}
 			$folder = trim($folder, '/');
 			$prepareRegExp = str_replace('/', "\/", $folder);
 			$returned[] = '/^'.$prepareRegExp.'(\/)+/';

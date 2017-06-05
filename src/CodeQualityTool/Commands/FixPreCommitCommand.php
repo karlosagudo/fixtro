@@ -86,8 +86,6 @@ final class FixPreCommitCommand extends GeneralCommand
 		$gitFiles = new GitFiles($this->config);
 		$files = $gitFiles->getPreCommitFiles();
 
-		print_r($files);
-
 		return $this->executeCheckersAndShowResult($output, $files);
 	}
 }

@@ -4,8 +4,273 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "723b1f1693ed4b2efee9719305a6b887",
+    "content-hash": "0c2aaf42988d23c765a40c0679ec67e7",
     "packages": [
+        {
+            "name": "behat/behat",
+            "version": "v3.3.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Behat/Behat.git",
+                "reference": "44a58c1480d6144b2dc2c2bf02b9cef73c83840d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Behat/Behat/zipball/44a58c1480d6144b2dc2c2bf02b9cef73c83840d",
+                "reference": "44a58c1480d6144b2dc2c2bf02b9cef73c83840d",
+                "shasum": ""
+            },
+            "require": {
+                "behat/gherkin": "^4.4.4",
+                "behat/transliterator": "^1.2",
+                "container-interop/container-interop": "^1.1",
+                "ext-mbstring": "*",
+                "php": ">=5.3.3",
+                "symfony/class-loader": "~2.1||~3.0",
+                "symfony/config": "~2.3||~3.0",
+                "symfony/console": "~2.5||~3.0",
+                "symfony/dependency-injection": "~2.1||~3.0",
+                "symfony/event-dispatcher": "~2.1||~3.0",
+                "symfony/translation": "~2.3||~3.0",
+                "symfony/yaml": "~2.1||~3.0"
+            },
+            "require-dev": {
+                "herrera-io/box": "~1.6.1",
+                "phpunit/phpunit": "~4.5",
+                "symfony/process": "~2.5|~3.0"
+            },
+            "suggest": {
+                "behat/mink-extension": "for integration with Mink testing framework",
+                "behat/symfony2-extension": "for integration with Symfony2 web framework",
+                "behat/yii-extension": "for integration with Yii web framework"
+            },
+            "bin": [
+                "bin/behat"
+            ],
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "3.2.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Behat\\Behat": "src/",
+                    "Behat\\Testwork": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Konstantin Kudryashov",
+                    "email": "ever.zet@gmail.com",
+                    "homepage": "http://everzet.com"
+                }
+            ],
+            "description": "Scenario-oriented BDD framework for PHP 5.3",
+            "homepage": "http://behat.org/",
+            "keywords": [
+                "Agile",
+                "BDD",
+                "ScenarioBDD",
+                "Scrum",
+                "StoryBDD",
+                "User story",
+                "business",
+                "development",
+                "documentation",
+                "examples",
+                "symfony",
+                "testing"
+            ],
+            "time": "2017-05-15T16:49:16+00:00"
+        },
+        {
+            "name": "behat/gherkin",
+            "version": "v4.4.5",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Behat/Gherkin.git",
+                "reference": "5c14cff4f955b17d20d088dec1bde61c0539ec74"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Behat/Gherkin/zipball/5c14cff4f955b17d20d088dec1bde61c0539ec74",
+                "reference": "5c14cff4f955b17d20d088dec1bde61c0539ec74",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.1"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~4.5|~5",
+                "symfony/phpunit-bridge": "~2.7|~3",
+                "symfony/yaml": "~2.3|~3"
+            },
+            "suggest": {
+                "symfony/yaml": "If you want to parse features, represented in YAML files"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "4.4-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Behat\\Gherkin": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Konstantin Kudryashov",
+                    "email": "ever.zet@gmail.com",
+                    "homepage": "http://everzet.com"
+                }
+            ],
+            "description": "Gherkin DSL parser for PHP 5.3",
+            "homepage": "http://behat.org/",
+            "keywords": [
+                "BDD",
+                "Behat",
+                "Cucumber",
+                "DSL",
+                "gherkin",
+                "parser"
+            ],
+            "time": "2016-10-30T11:50:56+00:00"
+        },
+        {
+            "name": "behat/transliterator",
+            "version": "v1.2.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Behat/Transliterator.git",
+                "reference": "826ce7e9c2a6664c0d1f381cbb38b1fb80a7ee2c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Behat/Transliterator/zipball/826ce7e9c2a6664c0d1f381cbb38b1fb80a7ee2c",
+                "reference": "826ce7e9c2a6664c0d1f381cbb38b1fb80a7ee2c",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.3"
+            },
+            "require-dev": {
+                "chuyskywalker/rolling-curl": "^3.1",
+                "php-yaoi/php-yaoi": "^1.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.2-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Behat\\Transliterator": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "Artistic-1.0"
+            ],
+            "description": "String transliterator",
+            "keywords": [
+                "i18n",
+                "slug",
+                "transliterator"
+            ],
+            "time": "2017-04-04T11:38:05+00:00"
+        },
+        {
+            "name": "container-interop/container-interop",
+            "version": "1.2.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/container-interop/container-interop.git",
+                "reference": "79cbf1341c22ec75643d841642dd5d6acd83bdb8"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/container-interop/container-interop/zipball/79cbf1341c22ec75643d841642dd5d6acd83bdb8",
+                "reference": "79cbf1341c22ec75643d841642dd5d6acd83bdb8",
+                "shasum": ""
+            },
+            "require": {
+                "psr/container": "^1.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Interop\\Container\\": "src/Interop/Container/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "Promoting the interoperability of container objects (DIC, SL, etc.)",
+            "homepage": "https://github.com/container-interop/container-interop",
+            "time": "2017-02-14T19:40:03+00:00"
+        },
+        {
+            "name": "psr/container",
+            "version": "1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/php-fig/container.git",
+                "reference": "b7ce3b176482dbbc1245ebf52b181af44c2cf55f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/php-fig/container/zipball/b7ce3b176482dbbc1245ebf52b181af44c2cf55f",
+                "reference": "b7ce3b176482dbbc1245ebf52b181af44c2cf55f",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Psr\\Container\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "PHP-FIG",
+                    "homepage": "http://www.php-fig.org/"
+                }
+            ],
+            "description": "Common Container Interface (PHP FIG PSR-11)",
+            "homepage": "https://github.com/php-fig/container",
+            "keywords": [
+                "PSR-11",
+                "container",
+                "container-interface",
+                "container-interop",
+                "psr"
+            ],
+            "time": "2017-02-14T16:28:37+00:00"
+        },
         {
             "name": "psr/log",
             "version": "1.0.2",
@@ -52,6 +317,124 @@
                 "psr-3"
             ],
             "time": "2016-10-10T12:19:37+00:00"
+        },
+        {
+            "name": "symfony/class-loader",
+            "version": "v3.3.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/class-loader.git",
+                "reference": "386a294d621576302e7cc36965d6ed53b8c73c4f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/class-loader/zipball/386a294d621576302e7cc36965d6ed53b8c73c4f",
+                "reference": "386a294d621576302e7cc36965d6ed53b8c73c4f",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.5.9"
+            },
+            "require-dev": {
+                "symfony/finder": "~2.8|~3.0",
+                "symfony/polyfill-apcu": "~1.1"
+            },
+            "suggest": {
+                "symfony/polyfill-apcu": "For using ApcClassLoader on HHVM"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "3.3-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Symfony\\Component\\ClassLoader\\": ""
+                },
+                "exclude-from-classmap": [
+                    "/Tests/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Fabien Potencier",
+                    "email": "fabien@symfony.com"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "https://symfony.com/contributors"
+                }
+            ],
+            "description": "Symfony ClassLoader Component",
+            "homepage": "https://symfony.com",
+            "time": "2017-06-02T09:51:43+00:00"
+        },
+        {
+            "name": "symfony/config",
+            "version": "v3.3.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/config.git",
+                "reference": "a094618deb9a3fe1c3cf500a796e167d0495a274"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/config/zipball/a094618deb9a3fe1c3cf500a796e167d0495a274",
+                "reference": "a094618deb9a3fe1c3cf500a796e167d0495a274",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.5.9",
+                "symfony/filesystem": "~2.8|~3.0"
+            },
+            "conflict": {
+                "symfony/dependency-injection": "<3.3",
+                "symfony/finder": "<3.3"
+            },
+            "require-dev": {
+                "symfony/dependency-injection": "~3.3",
+                "symfony/finder": "~3.3",
+                "symfony/yaml": "~3.0"
+            },
+            "suggest": {
+                "symfony/yaml": "To use the yaml reference dumper"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "3.3-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Symfony\\Component\\Config\\": ""
+                },
+                "exclude-from-classmap": [
+                    "/Tests/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Fabien Potencier",
+                    "email": "fabien@symfony.com"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "https://symfony.com/contributors"
+                }
+            ],
+            "description": "Symfony Config Component",
+            "homepage": "https://symfony.com",
+            "time": "2017-06-16T12:40:34+00:00"
         },
         {
             "name": "symfony/console",
@@ -179,6 +562,76 @@
             "time": "2017-06-06T14:51:55+00:00"
         },
         {
+            "name": "symfony/dependency-injection",
+            "version": "v3.3.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/dependency-injection.git",
+                "reference": "986a633c92220ecb22ad06820a1df126c7a4f9eb"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/dependency-injection/zipball/986a633c92220ecb22ad06820a1df126c7a4f9eb",
+                "reference": "986a633c92220ecb22ad06820a1df126c7a4f9eb",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.5.9",
+                "psr/container": "^1.0"
+            },
+            "conflict": {
+                "symfony/config": "<3.3.1",
+                "symfony/finder": "<3.3",
+                "symfony/yaml": "<3.3"
+            },
+            "provide": {
+                "psr/container-implementation": "1.0"
+            },
+            "require-dev": {
+                "symfony/config": "~3.3",
+                "symfony/expression-language": "~2.8|~3.0",
+                "symfony/yaml": "~3.3"
+            },
+            "suggest": {
+                "symfony/config": "",
+                "symfony/expression-language": "For using expressions in service container configuration",
+                "symfony/finder": "For using double-star glob patterns or when GLOB_BRACE portability is required",
+                "symfony/proxy-manager-bridge": "Generate service proxies to lazy load them",
+                "symfony/yaml": ""
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "3.3-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Symfony\\Component\\DependencyInjection\\": ""
+                },
+                "exclude-from-classmap": [
+                    "/Tests/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Fabien Potencier",
+                    "email": "fabien@symfony.com"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "https://symfony.com/contributors"
+                }
+            ],
+            "description": "Symfony DependencyInjection Component",
+            "homepage": "https://symfony.com",
+            "time": "2017-06-20T14:01:46+00:00"
+        },
+        {
             "name": "symfony/event-dispatcher",
             "version": "v3.3.3",
             "source": {
@@ -240,6 +693,55 @@
             "description": "Symfony EventDispatcher Component",
             "homepage": "https://symfony.com",
             "time": "2017-06-09T14:53:08+00:00"
+        },
+        {
+            "name": "symfony/filesystem",
+            "version": "v3.3.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/filesystem.git",
+                "reference": "311fa718389efbd8b627c272b9324a62437018cc"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/filesystem/zipball/311fa718389efbd8b627c272b9324a62437018cc",
+                "reference": "311fa718389efbd8b627c272b9324a62437018cc",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.5.9"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "3.3-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Symfony\\Component\\Filesystem\\": ""
+                },
+                "exclude-from-classmap": [
+                    "/Tests/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Fabien Potencier",
+                    "email": "fabien@symfony.com"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "https://symfony.com/contributors"
+                }
+            ],
+            "description": "Symfony Filesystem Component",
+            "homepage": "https://symfony.com",
+            "time": "2017-06-24T09:29:48+00:00"
         },
         {
             "name": "symfony/finder",
@@ -397,6 +899,71 @@
             "description": "Symfony Process Component",
             "homepage": "https://symfony.com",
             "time": "2017-07-03T08:12:02+00:00"
+        },
+        {
+            "name": "symfony/translation",
+            "version": "v3.3.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/translation.git",
+                "reference": "35dd5fb003c90e8bd4d8cabdf94bf9c96d06fdc3"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/translation/zipball/35dd5fb003c90e8bd4d8cabdf94bf9c96d06fdc3",
+                "reference": "35dd5fb003c90e8bd4d8cabdf94bf9c96d06fdc3",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.5.9",
+                "symfony/polyfill-mbstring": "~1.0"
+            },
+            "conflict": {
+                "symfony/config": "<2.8",
+                "symfony/yaml": "<3.3"
+            },
+            "require-dev": {
+                "psr/log": "~1.0",
+                "symfony/config": "~2.8|~3.0",
+                "symfony/intl": "^2.8.18|^3.2.5",
+                "symfony/yaml": "~3.3"
+            },
+            "suggest": {
+                "psr/log": "To use logging capability in translator",
+                "symfony/config": "",
+                "symfony/yaml": ""
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "3.3-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Symfony\\Component\\Translation\\": ""
+                },
+                "exclude-from-classmap": [
+                    "/Tests/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Fabien Potencier",
+                    "email": "fabien@symfony.com"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "https://symfony.com/contributors"
+                }
+            ],
+            "description": "Symfony Translation Component",
+            "homepage": "https://symfony.com",
+            "time": "2017-06-24T16:45:30+00:00"
         },
         {
             "name": "symfony/yaml",
@@ -2674,55 +3241,6 @@
             "time": "2017-06-30T08:15:21+00:00"
         },
         {
-            "name": "psr/container",
-            "version": "1.0.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/php-fig/container.git",
-                "reference": "b7ce3b176482dbbc1245ebf52b181af44c2cf55f"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/php-fig/container/zipball/b7ce3b176482dbbc1245ebf52b181af44c2cf55f",
-                "reference": "b7ce3b176482dbbc1245ebf52b181af44c2cf55f",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.3.0"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "1.0.x-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Psr\\Container\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "PHP-FIG",
-                    "homepage": "http://www.php-fig.org/"
-                }
-            ],
-            "description": "Common Container Interface (PHP FIG PSR-11)",
-            "homepage": "https://github.com/php-fig/container",
-            "keywords": [
-                "PSR-11",
-                "container",
-                "container-interface",
-                "container-interop",
-                "psr"
-            ],
-            "time": "2017-02-14T16:28:37+00:00"
-        },
-        {
             "name": "sebastian/code-unit-reverse-lookup",
             "version": "1.0.1",
             "source": {
@@ -3551,187 +4069,6 @@
             ],
             "description": "A security checker for your composer.lock",
             "time": "2017-03-31T14:50:32+00:00"
-        },
-        {
-            "name": "symfony/config",
-            "version": "v3.3.3",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/symfony/config.git",
-                "reference": "a094618deb9a3fe1c3cf500a796e167d0495a274"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/symfony/config/zipball/a094618deb9a3fe1c3cf500a796e167d0495a274",
-                "reference": "a094618deb9a3fe1c3cf500a796e167d0495a274",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.5.9",
-                "symfony/filesystem": "~2.8|~3.0"
-            },
-            "conflict": {
-                "symfony/dependency-injection": "<3.3",
-                "symfony/finder": "<3.3"
-            },
-            "require-dev": {
-                "symfony/dependency-injection": "~3.3",
-                "symfony/finder": "~3.3",
-                "symfony/yaml": "~3.0"
-            },
-            "suggest": {
-                "symfony/yaml": "To use the yaml reference dumper"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "3.3-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Symfony\\Component\\Config\\": ""
-                },
-                "exclude-from-classmap": [
-                    "/Tests/"
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Fabien Potencier",
-                    "email": "fabien@symfony.com"
-                },
-                {
-                    "name": "Symfony Community",
-                    "homepage": "https://symfony.com/contributors"
-                }
-            ],
-            "description": "Symfony Config Component",
-            "homepage": "https://symfony.com",
-            "time": "2017-06-16T12:40:34+00:00"
-        },
-        {
-            "name": "symfony/dependency-injection",
-            "version": "v3.3.3",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/symfony/dependency-injection.git",
-                "reference": "986a633c92220ecb22ad06820a1df126c7a4f9eb"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/symfony/dependency-injection/zipball/986a633c92220ecb22ad06820a1df126c7a4f9eb",
-                "reference": "986a633c92220ecb22ad06820a1df126c7a4f9eb",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.5.9",
-                "psr/container": "^1.0"
-            },
-            "conflict": {
-                "symfony/config": "<3.3.1",
-                "symfony/finder": "<3.3",
-                "symfony/yaml": "<3.3"
-            },
-            "provide": {
-                "psr/container-implementation": "1.0"
-            },
-            "require-dev": {
-                "symfony/config": "~3.3",
-                "symfony/expression-language": "~2.8|~3.0",
-                "symfony/yaml": "~3.3"
-            },
-            "suggest": {
-                "symfony/config": "",
-                "symfony/expression-language": "For using expressions in service container configuration",
-                "symfony/finder": "For using double-star glob patterns or when GLOB_BRACE portability is required",
-                "symfony/proxy-manager-bridge": "Generate service proxies to lazy load them",
-                "symfony/yaml": ""
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "3.3-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Symfony\\Component\\DependencyInjection\\": ""
-                },
-                "exclude-from-classmap": [
-                    "/Tests/"
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Fabien Potencier",
-                    "email": "fabien@symfony.com"
-                },
-                {
-                    "name": "Symfony Community",
-                    "homepage": "https://symfony.com/contributors"
-                }
-            ],
-            "description": "Symfony DependencyInjection Component",
-            "homepage": "https://symfony.com",
-            "time": "2017-06-20T14:01:46+00:00"
-        },
-        {
-            "name": "symfony/filesystem",
-            "version": "v3.3.3",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/symfony/filesystem.git",
-                "reference": "311fa718389efbd8b627c272b9324a62437018cc"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/symfony/filesystem/zipball/311fa718389efbd8b627c272b9324a62437018cc",
-                "reference": "311fa718389efbd8b627c272b9324a62437018cc",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.5.9"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "3.3-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Symfony\\Component\\Filesystem\\": ""
-                },
-                "exclude-from-classmap": [
-                    "/Tests/"
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Fabien Potencier",
-                    "email": "fabien@symfony.com"
-                },
-                {
-                    "name": "Symfony Community",
-                    "homepage": "https://symfony.com/contributors"
-                }
-            ],
-            "description": "Symfony Filesystem Component",
-            "homepage": "https://symfony.com",
-            "time": "2017-06-24T09:29:48+00:00"
         },
         {
             "name": "symfony/options-resolver",

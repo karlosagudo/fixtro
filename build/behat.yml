@@ -1,0 +1,7 @@
+default:
+    suites:
+        default:
+            paths:
+                - "%paths.base%/../src/features"
+            contexts:
+                - KarlosAgudo\Fixtro\features\bootstrap\FeatureContext

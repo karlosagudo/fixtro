@@ -12,6 +12,8 @@ phpMessDetectorChecker:
   enable: true
 phpUnitChecker:
   enable: true
+behatChecker:
+  enable: true
 psAlmChecker:
   enable: true
 strictDeclareFixer:

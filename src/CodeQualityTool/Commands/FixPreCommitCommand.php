@@ -53,6 +53,10 @@ final class FixPreCommitCommand extends GeneralCommand
 			'filter' => 'getNullFiles',
 		],
 		[
+			'process' => 'KarlosAgudo\Fixtro\CodeQualityTool\Checker\BehatChecker',
+			'filter' => 'getNullFiles',
+		],
+		[
 			'process' => 'KarlosAgudo\Fixtro\CodeQualityTool\Checker\PsAlmChecker',
 			'filter' => 'getPhpFiles',
 		],

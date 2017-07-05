@@ -47,7 +47,7 @@ class BehatChecker extends AbstractChecker implements CheckerInterface
 			]
 		);
 
-		$processBuilder->setWorkingDirectory($this->fixtroVendorRootPath);
+		$processBuilder->setWorkingDirectory($this->projectPath);
 		$processBuilder->setTimeout(3600);
 		$process = $processBuilder->getProcess();
 		$this->setProcessLine($process->getCommandLine());

@@ -1,0 +1,7 @@
+default:
+    suites:
+        default:
+            paths:
+                - "%paths.base%"
+            contexts:
+                - KarlosAgudo\Fixtro\Tests\CodeQualityTool\CodeExamples\Behat\Ok\FeatureContext

@@ -19,7 +19,7 @@ You can check which one is using fixtro by running the command in verbose mode.
 The default fixtro yml file is:
 
     ignoreFolders: ['var','vendor', 'tests', 'test']
-    sourceFolders: ['./']
+    sourceFolders: ['src']
     composerChecker:
       enable: true
     codeStyleFixer:
@@ -45,7 +45,15 @@ The default fixtro yml file is:
     
 In Ignore folders, this folders will not be used for checkers (except obviosly for phpunit).
 The Source Folder, allow you to whitelist the folders you want to be sure to check . Ex: src
+You can also use wildcards in your folders for example:
+    
+    ignoreFolders: ['var','vendor', 'tests', 'test', 'src/*/*/Tests']
+ 
+This way all the folders like src/myNamespace/myModule/Tests will be ignored.
+
 The rest are the checkers, and a enable: true meaning will run in each process.
+
+
 
 (TODO: In future versions will allow to pass special parameters)
 

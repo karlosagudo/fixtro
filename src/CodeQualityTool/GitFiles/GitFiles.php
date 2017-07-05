@@ -94,6 +94,8 @@ class GitFiles
 			}
 			$folder = trim($folder, '/');
 			$prepareRegExp = str_replace('/', "\/", $folder);
+			$prepareRegExp = str_replace('*','(.*)', $prepareRegExp);
+
 			$returned[] = '/^'.$prepareRegExp.'(\/)+/';
 		}
 

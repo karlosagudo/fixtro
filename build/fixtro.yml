@@ -1,5 +1,5 @@
 ignoreFolders: ['var','vendor', 'tests', 'test']
-sourceFolders: ['']
+sourceFolders: ['src']
 composerChecker:
   enable: true
 codeStyleFixer:

@@ -29,4 +29,20 @@ abstract class GeneralCheckerTestCase extends TestCase
 			unlink($file);
 		}
 	}
+
+    protected function glueExit(array $exit) : string
+    {
+        $lined = '';
+        foreach ($exit as $key1 => $value1) {
+            if (!is_array($value1) || count($value1) === 0) {
+                continue;
+            }
+
+            foreach($value1 as $key2 => $value2) {
+                $lined .= $value2;
+            }
+        }
+
+        return $lined;
+    }
 }

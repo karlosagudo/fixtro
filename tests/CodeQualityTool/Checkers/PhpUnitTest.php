@@ -35,8 +35,10 @@ EOT;
 		$filesToAnalyzer = [__DIR__ . '/../CodeExamples/PhpUnit/BadDummyTest.php'];
 		$this->parameters['confFile'] = __DIR__ . '/../CodeExamples/PhpUnit/phpunit.xml';
 		$exit = $this->executeChecker($filesToAnalyzer, PhpUnitChecker::class, true);
+		$exit = implode('',$exit[0]);
+		$hasFailures = strpos($exit, 'FAILURES') !== 0;
 
-		self::assertEquals($exit[0][2], 'F');
+		self::assertTrue($hasFailures);
 		$this->destroyBadCode(__DIR__ . '/../CodeExamples/PhpUnit/BadDummyTest.php');
 	}
 

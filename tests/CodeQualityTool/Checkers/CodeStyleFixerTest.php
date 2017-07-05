@@ -24,6 +24,6 @@ class CodeStyleFixerTest extends GeneralCheckerTestCase
 
 		$exit = $this->executeChecker($filesToAnalyzer, CodeStyleFixer::class, true);
 
-		self::assertContains('---------- begin diff ----------', $exit[0][2]);
+		self::assertContains('/Bad.php', $exit[0][2]);
 	}
 }

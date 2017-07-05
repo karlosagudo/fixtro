@@ -13,6 +13,7 @@ class PhpLintChecker extends AbstractChecker implements CheckerInterface
 
 	/** @var array */
 	protected $filterOutput = [
+		'PHP 7',
 		'parallel jobs',
 		'Fixed all files in \d\.\d seconds, \d.\d MB memory used',
 		'found',

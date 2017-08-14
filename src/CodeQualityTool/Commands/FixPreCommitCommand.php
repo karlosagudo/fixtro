@@ -90,6 +90,12 @@ final class FixPreCommitCommand extends GeneralCommand
 		$gitFiles = new GitFiles($this->config);
 		$files = $gitFiles->getPreCommitFiles();
 
-		return $this->executeCheckersAndShowResult($output, $files);
+		$return = $this->executeCheckersAndShowResult($output, $files);
+
+		if ($return === 0) { //everything went well so we add changed files
+			$gitFiles->stageUpdatedFiles();
+		}
+
+		return $return;
 	}
 }

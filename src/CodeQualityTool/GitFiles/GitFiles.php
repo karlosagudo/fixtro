@@ -41,6 +41,21 @@ class GitFiles
 		return $this->removeIgnored($precommitFiles);
 	}
 
+	public function stashFilesBeforePrecommit()
+	{
+		exec('git stash -q --keep-index');
+	}
+
+	public function stageUpdatedFiles()
+	{
+		exec('git add -u');
+	}
+
+	public function unstashFilesAfterPrecommmit()
+	{
+		exec('git stash pop -q');
+	}
+
 	/**
 	 * @param string $branch
 	 *

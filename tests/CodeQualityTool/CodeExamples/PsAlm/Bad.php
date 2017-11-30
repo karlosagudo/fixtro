@@ -7,7 +7,7 @@ class Bad
     /**
      * @param string $hello
      */
-    public function helloWorld(integer $hello)
+    public function helloWorld(int $hello) : bool
     {
         echo $hello;
     }

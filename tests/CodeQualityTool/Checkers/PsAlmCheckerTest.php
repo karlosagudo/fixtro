@@ -21,7 +21,7 @@ class PsAlmCheckerTest extends GeneralCheckerTestCase
 
 		$exit = $this->executeChecker($filesToAnalyzer, PsAlmChecker::class, true);
 
-		self::assertContains('ERROR: InvalidDocblock', $exit[1][0]);
+		self::assertContains('ERROR', $exit[0][1]);
 	}
 
 	public function tearDown()

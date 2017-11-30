@@ -202,6 +202,9 @@ class InstallCommand extends Command
 		) {
 			unlink($this->getProjectRootPath().'/.git/hooks/pre-commit');
 		}
+		if(!is_dir('.git/hooks/')){
+			mkdir('.git/hooks/', 0777, true)
+		}
 		symlink($binFolder.'/fixtro-precommit', '.git/hooks/pre-commit');
 	}
 

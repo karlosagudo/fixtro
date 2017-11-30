@@ -7,7 +7,7 @@ A tool/framework to fix and check static code analysis in our enviroments.
 90% Users just need to run the install command, install the precommit and thats it, you will have a fixer of the code, and a way to analyze your code so detects possible(or future) errors.
 In order to do so execute:
     
-    composer require karlosagudo/fixtro
+    composer require karlosagudo/fixtro --dev
  
     vendor/bin/fixtro install
 

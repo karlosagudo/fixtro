@@ -103,6 +103,14 @@ final class FixEntireCommand extends GeneralCommand
 		$srcFolder = $this->config['sourceFolders'] ?? $this->getProjectRootPath();
 		$ignoreFolders = $this->config['ignoreFolders'] ?? ['vendor'];
 
+		if (!is_array($srcFolder)) {
+			$srcFolder = [$srcFolder];
+		}
+
+		if (!is_array($ignoreFolders)) {
+			$ignoreFolders = [$ignoreFolders];
+		}
+
 		$srcFolder = $this->parseFolders($srcFolder);
 		$ignoreFolders = $this->parseFolders($ignoreFolders);
 
@@ -133,13 +141,9 @@ final class FixEntireCommand extends GeneralCommand
 	 *
 	 * @return array|string
 	 */
-	private function parseFolders($srcFolder)
+	private function parseFolders(array $srcFolder)
 	{
-		if (!is_array($srcFolder)) {
-			$srcFolder = [$srcFolder];
-		}
-
-		$srcFolder = array_filter($srcFolder, function ($possibleFolder) {
+		$srcFolder = array_filter($srcFolder, function (string $possibleFolder) {
 			return is_dir($possibleFolder);
 		});
 

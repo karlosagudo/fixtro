@@ -335,7 +335,7 @@ class InstallCommand extends Command
 	 *
 	 * @return bool
 	 */
-	private function copyDefaultConfigTo($buildFolder): bool
+	private function copyDefaultConfigTo(string $buildFolder): bool
 	{
 		$fileSystem = new Filesystem();
 		try {

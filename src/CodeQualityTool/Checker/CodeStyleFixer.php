@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace KarlosAgudo\Fixtro\CodeQualityTool\Checker;
 
-use Symfony\Component\Process\ProcessBuilder;
+use Symfony\Component\Process\Process;
 
 class CodeStyleFixer extends AbstractChecker implements CheckerInterface
 {
@@ -26,9 +26,8 @@ class CodeStyleFixer extends AbstractChecker implements CheckerInterface
 	public function process()
 	{
 		foreach ($this->filesToAnalyze as $file) {
-			$processBuilder = $this->createProcess($file);
-			$processBuilder->setWorkingDirectory($this->fixtroVendorRootPath);
-			$process = $processBuilder->getProcess();
+			$process = $this->createProcess($file);
+			$process->setWorkingDirectory($this->fixtroVendorRootPath);
 			$this->setProcessLine($process->getCommandLine());
 			$process->run(function ($type, $buffer) {
 				$this->outputChecker[] = $buffer;
@@ -45,10 +44,10 @@ class CodeStyleFixer extends AbstractChecker implements CheckerInterface
 	 *
 	 * @todo check RuleSet and apply
 	 *
-	 * @return ProcessBuilder
+	 * @return Process
 	 * @psalm-suppress TypeCoercion
 	 */
-	protected function createProcess($file): ProcessBuilder
+	protected function createProcess(string $file): Process
 	{
 		$runMode = 'fix';
 		if (isset($this->parameters['runMode'])) {
@@ -67,7 +66,7 @@ class CodeStyleFixer extends AbstractChecker implements CheckerInterface
 			$afterParams = $this->parameters['afterParams'];
 		}
 
-		return new ProcessBuilder(
+		return new Process(
 			[
 				$this->fixtroVendorRootPath.'/bin/php_no_xdebug',
 				$this->findBinary('php-cs-fixer'),

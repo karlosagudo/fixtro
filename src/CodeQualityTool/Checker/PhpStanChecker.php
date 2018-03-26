@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace KarlosAgudo\Fixtro\CodeQualityTool\Checker;
 
-use Symfony\Component\Process\ProcessBuilder;
+use Symfony\Component\Process\Process;
 
 class PhpStanChecker extends AbstractChecker implements CheckerInterface
 {
@@ -40,8 +40,7 @@ class PhpStanChecker extends AbstractChecker implements CheckerInterface
 
 		$processAr = array_merge($processAr, $this->filesToAnalyze);
 
-		$processBuilder = new ProcessBuilder($processAr);
-		$process = $processBuilder->getProcess();
+		$process = new Process($processAr);
 		$this->setProcessLine($process->getCommandLine());
 		$process->run(function ($type, $buffer) {
 			$this->outputChecker[] = $buffer;
@@ -49,7 +48,7 @@ class PhpStanChecker extends AbstractChecker implements CheckerInterface
 
 		$lastText = end($this->outputChecker);
 
-		if (!$process->isSuccessful() || strpos($lastText, '[ERROR]') !== false) {
+		if (!$process->isSuccessful() || false !== strpos($lastText, '[ERROR]')) {
 			$output = array_filter($this->outputChecker, function ($element) {
 				return !preg_match('/\d+\%/', $element);
 			});

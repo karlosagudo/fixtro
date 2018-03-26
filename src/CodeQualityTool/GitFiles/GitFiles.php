@@ -20,7 +20,7 @@ class GitFiles
 	 *
 	 * @param array $config
 	 */
-	public function __construct($config)
+	public function __construct(array $config)
 	{
 		$this->ignoreFolders = $this->extractFolders($config['ignoreFolders']);
 		$this->sourceFolders = $this->extractFolders($config['sourceFolders']);
@@ -82,9 +82,9 @@ class GitFiles
 	 *
 	 * @return array
 	 */
-	private function removeIgnored($precommitFiles): array
+	private function removeIgnored(array $precommitFiles): array
 	{
-		return array_filter($precommitFiles, function ($elem) {
+		return array_filter($precommitFiles, function (string $elem) {
 			foreach ($this->ignoreFolders as $ignoreFolder) {
 				if (preg_match($ignoreFolder, $elem)) {
 					return false;

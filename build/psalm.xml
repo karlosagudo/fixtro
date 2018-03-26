@@ -11,7 +11,7 @@
 
     <issueHandlers>
         <!-- level 3 issues - slightly lazy code writing, but provably low false-negatives -->
-        <DeprecatedMethod errorLevel="info" />
+        <DeprecatedMethod errorLevel="error" />
 
         <MissingClosureReturnType errorLevel="suppress" />
         <MissingReturnType errorLevel="suppress" />
@@ -20,5 +20,11 @@
         <MisplacedRequiredParam errorLevel="info" />
         <PropertyNotSetInConstructor errorLevel="info" />
         <MissingConstructor errorLevel="info" />
+        <UnresolvableInclude errorLevel="info" />
+        <MissingClosureParamType>
+            <errorLevel type="suppress">
+                <directory name="src/CodeQualityTool/Checker" />
+            </errorLevel>
+        </MissingClosureParamType>
     </issueHandlers>
 </psalm>

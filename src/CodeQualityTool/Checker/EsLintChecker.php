@@ -1,8 +1,10 @@
 <?php
 
+declare(strict_types=1);
+
 namespace KarlosAgudo\Fixtro\CodeQualityTool\Checker;
 
-use Symfony\Component\Process\ProcessBuilder;
+use Symfony\Component\Process\Process;
 
 class EsLintChecker extends AbstractChecker implements CheckerInterface
 {
@@ -28,9 +30,8 @@ class EsLintChecker extends AbstractChecker implements CheckerInterface
 
 		$confFile = $this->findConfFile();
 		foreach ($this->filesToAnalyze as $file) {
-			$processBuilder = $this->createProcess($binFile, $confFile, $file);
-			$processBuilder->setWorkingDirectory($this->fixtroVendorRootPath);
-			$process = $processBuilder->getProcess();
+			$process = $this->createProcess($binFile, $confFile, $file);
+			$process->setWorkingDirectory($this->fixtroVendorRootPath);
 			$this->setProcessLine($process->getCommandLine());
 			$process->run(function ($type, $buffer) {
 				$this->outputChecker[] = $buffer;
@@ -54,14 +55,14 @@ class EsLintChecker extends AbstractChecker implements CheckerInterface
 			return $this->getProjectPath().'/node_modules/.bin/eslint';
 		}
 
-		$isInstalledGlobalProcess = new ProcessBuilder(
+		$process = new Process(
 			[
 				'eslint',
 				'-v',
 			]
 		);
-		$testIsInstalledGlobal = $isInstalledGlobalProcess->getProcess();
-		$testIsInstalledGlobal->run(function ($type, $buffer) {
+
+		$process->run(function ($type, $buffer) {
 			$this->outputChecker[] = $buffer;
 		});
 
@@ -111,11 +112,11 @@ class EsLintChecker extends AbstractChecker implements CheckerInterface
 	 * @param string $confFile
 	 * @param string $file
 	 *
-	 * @return ProcessBuilder
+	 * @return Process
 	 */
-	private function createProcess(string $binFile, string $confFile, string $file): ProcessBuilder
+	private function createProcess(string $binFile, string $confFile, string $file): Process
 	{
-		return new ProcessBuilder(
+		return new Process(
 			[
 				$binFile,
 				$confFile,

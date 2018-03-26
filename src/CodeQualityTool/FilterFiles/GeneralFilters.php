@@ -51,10 +51,7 @@ class GeneralFilters
 		return [];
 	}
 
-	/**
-	 * @return array
-	 */
-	private function matchFilesAgainst($regExp)
+	private function matchFilesAgainst(string $regExp): array
 	{
 		$return = [];
 		foreach ($this->files as $gitFile) {

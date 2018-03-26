@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace KarlosAgudo\Fixtro\CodeQualityTool\Checker;
 
-use Symfony\Component\Process\ProcessBuilder;
+use Symfony\Component\Process\Process;
 
 class PhpMessDetectorChecker extends AbstractChecker implements CheckerInterface
 {
@@ -20,15 +20,14 @@ class PhpMessDetectorChecker extends AbstractChecker implements CheckerInterface
 		$ruleFile = $this->findRulesFile();
 
 		foreach ($this->filesToAnalyze as $file) {
-			$processBuilder = new ProcessBuilder([
+			$process = new Process([
 				$this->fixtroVendorRootPath.'/bin/php_no_xdebug',
 				$this->findBinary('phpmd'),
 				$file,
 				'text',
 				$ruleFile,
 			]);
-			$processBuilder->setWorkingDirectory($this->fixtroVendorRootPath);
-			$process = $processBuilder->getProcess();
+			$process->setWorkingDirectory($this->fixtroVendorRootPath);
 			$this->setProcessLine($process->getCommandLine());
 			$process->run(function ($type, $buffer) {
 				$this->errors[] = $buffer;

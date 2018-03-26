@@ -112,7 +112,7 @@ class GeneralCommand extends Command
 			$process = $analyzer['process'];
 			$filter = $analyzer['filter'];
 			$filesFound = $this->applyFilter($filterClass, $filter);
-			if (!$filesFound && $filter !== 'getNullFiles') {
+			if (!$filesFound && 'getNullFiles' !== $filter) {
 				continue;
 			}
 			$this->context->throwEvent('analyzer.'.$eventAnalyzerName.'.files', $filesFound);
@@ -124,24 +124,22 @@ class GeneralCommand extends Command
 		return $checkers;
 	}
 
-	/**
-	 * @param OutputInterface $output
-	 */
-	public function showFixTheCode(OutputInterface $output)
+	public function showFixTheCode(OutputInterface $output): bool
 	{
 		$draw = $this->context->getConfig()['badMessage'] ?? file_get_contents(__DIR__.'/../Ascii/badMessage');
 
-		return $output->write($draw);
+		$output->write($draw);
+
+		return true;
 	}
 
-	/**
-	 * @param OutputInterface $output
-	 */
-	public function showCorrect(OutputInterface $output)
+	public function showCorrect(OutputInterface $output): bool
 	{
 		$draw = $this->context->getConfig()['goodMessage'] ?? file_get_contents(__DIR__.'/../Ascii/goodMessage');
 
-		return $output->write('<bg=green>'.$draw.'</>');
+		$output->write('<bg=green>'.$draw.'</>');
+
+		return true;
 	}
 
 	/**
@@ -149,19 +147,13 @@ class GeneralCommand extends Command
 	 *
 	 * @throws \InvalidArgumentException
 	 */
-	private function checkAnalyzerIsCorrect($analyzer)
+	private function checkAnalyzerIsCorrect(array $analyzer)
 	{
-		if (!is_array($analyzer) || !isset($analyzer['process'], $analyzer['filter'])) {
+		if (!isset($analyzer['process'], $analyzer['filter'])) {
 			throw new \InvalidArgumentException('The analyzer should be an array with process, and filter keys');
 		}
 	}
 
-	/**
-	 * @param GeneralFilters $filterClass
-	 * @param string         $filter
-	 *
-	 * @return array|mixed
-	 */
 	private function applyFilter(GeneralFilters $filterClass, string $filter)
 	{
 		if (!method_exists($filterClass, $filter)) {
@@ -171,12 +163,7 @@ class GeneralCommand extends Command
 		return call_user_func([$filterClass, $filter]);
 	}
 
-	/**
-	 * @param $analyzer
-	 *
-	 * @return array
-	 */
-	private function getParameters($analyzer): array
+	private function getParameters(array $analyzer): array
 	{
 		$parameters = [];
 		if (isset($analyzer['parameters'])) {
@@ -199,7 +186,7 @@ class GeneralCommand extends Command
 	 *
 	 * @return bool
 	 */
-	private function isDisabledAnalyzerInConfig($analyzerConfigKey): bool
+	private function isDisabledAnalyzerInConfig(string $analyzerConfigKey): bool
 	{
 		return isset($this->config[$analyzerConfigKey], $this->config[$analyzerConfigKey]['enable']) &&
 			$this->config[$analyzerConfigKey]['enable'] === false;

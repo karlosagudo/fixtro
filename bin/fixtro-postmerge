@@ -8,14 +8,14 @@ if (file_exists($a = __DIR__.'/../../../autoload.php')) {
 }
 
 use KarlosAgudo\Fixtro\CodeQualityTool\Console\Application;
-use KarlosAgudo\Fixtro\CodeQualityTool\Commands\FixPostMergeCommand;
+use KarlosAgudo\Fixtro\CodeQualityTool\Commands\FixMergeCommand;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 
 $application = new Application();
-$command = new FixPostMergeCommand();
+$command = new FixMergeCommand();
 
 $application->add($command);
 

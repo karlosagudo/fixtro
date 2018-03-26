@@ -45,7 +45,7 @@ class GitFiles
 	{
 		exec('git diff-tree -r --name-only --no-commit-id ORIG_HEAD HEAD', $output);
 
-		return $this->removeIgnored($output);
+		return $output;
 	}
 
 	public function stashFilesBeforePrecommit()

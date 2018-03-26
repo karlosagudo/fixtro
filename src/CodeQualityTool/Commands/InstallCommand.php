@@ -11,14 +11,14 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Logger\ConsoleLogger;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Question\ConfirmationQuestion;
+use Symfony\Component\Filesystem\Exception\FileNotFoundException;
 use Symfony\Component\Filesystem\Filesystem;
 
 /**
  * Class InstallCommand.
  *
  * @psalm-suppress MissingConstructor
- * @SuppressWarnings(PHPMD.Cou
- *     plingBetweenObjects)
+ * @SuppressWarnings(PHPMD.CouplingBetweenObjects)
  */
 class InstallCommand extends Command
 {
@@ -59,6 +59,7 @@ class InstallCommand extends Command
 
 		$this->installComposerDependencies();
 		$this->installPreCommit($input, $output);
+		$this->installPostMerge($input, $output);
 
 		if ($this->findFixtroConfig()) {
 			return 0;
@@ -144,6 +145,32 @@ class InstallCommand extends Command
 	 * @return bool
 	 *
 	 * @throws \Symfony\Component\Console\Exception\RuntimeException
+	 */
+	private function installPostMerge(InputInterface $input, OutputInterface $output): bool
+	{
+		if (!is_dir($this->getProjectRootPath().'/.git')) {
+			return true;
+		}
+
+		$questionHook = new ConfirmationQuestion(
+			'<info>Do you want to install the postmerge hook?</info> (yes/no) Default: yes',
+			true
+		);
+
+		if ($this->questionHelper->ask($input, $output, $questionHook)) {
+			$this->installPostMergeHook();
+		}
+
+		return true;
+	}
+
+	/**
+	 * @param InputInterface  $input
+	 * @param OutputInterface $output
+	 *
+	 * @return bool
+	 *
+	 * @throws \Symfony\Component\Console\Exception\RuntimeException
 	 * @throws \Symfony\Component\Console\Exception\InvalidArgumentException
 	 * @throws \Symfony\Component\Console\Exception\LogicException
 	 */
@@ -178,7 +205,7 @@ class InstallCommand extends Command
 	 */
 	protected function getFixtroVendorsBinPath(): string
 	{
-		return realpath(__DIR__.'/../../../'); //fixtro local
+		return dirname(dirname(dirname(__DIR__))).'/'; //fixtro local
 	}
 
 	/**
@@ -194,7 +221,7 @@ class InstallCommand extends Command
 	private function installPreCommitHook()
 	{
 		$this->logger->info('Installing as Git Hook precommit');
-		$binFolder = realpath(__DIR__.'/../../../bin/');
+		$binFolder = dirname(__DIR__, 3).'/bin/';
 		chdir($this->getProjectRootPath());
 
 		if (is_file($this->getProjectRootPath().'/.git/hooks/pre-commit') ||
@@ -202,10 +229,30 @@ class InstallCommand extends Command
 		) {
 			unlink($this->getProjectRootPath().'/.git/hooks/pre-commit');
 		}
-		if(!is_dir('.git/hooks/')){
-			mkdir('.git/hooks/', 0777, true)
+		if (!@mkdir('.git/hooks/', 0777, true) && !is_dir('.git/hooks/')) {
+			throw new FileNotFoundException();
 		}
+
 		symlink($binFolder.'/fixtro-precommit', '.git/hooks/pre-commit');
+	}
+
+	private function installPostMergeHook()
+	{
+		$this->logger->info('Installing as Git Hook postMerge');
+		$binFolder = dirname(__DIR__, 3).'/bin/';
+		chdir($this->getProjectRootPath());
+
+		if (is_file($this->getProjectRootPath().'/.git/hooks/post-merge') ||
+			is_link($this->getProjectRootPath().'/.git/hooks/post-merge')
+		) {
+			unlink($this->getProjectRootPath().'/.git/hooks/post-merge');
+		}
+
+		if (!@mkdir('.git/hooks/', 0777, true) && !is_dir('.git/hooks/')) {
+			throw new FileNotFoundException();
+		}
+
+		symlink($binFolder.'/fixtro-postmerge', '.git/hooks/post-merge');
 	}
 
 	/**

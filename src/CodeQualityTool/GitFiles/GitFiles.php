@@ -41,6 +41,13 @@ class GitFiles
 		return $this->removeIgnored($precommitFiles);
 	}
 
+	public function getMergedFiles(): array
+	{
+		exec('git diff-tree -r --name-only --no-commit-id ORIG_HEAD HEAD', $output);
+
+		return $this->removeIgnored($output);
+	}
+
 	public function stashFilesBeforePrecommit()
 	{
 		exec('git stash -q --keep-index');
@@ -103,7 +110,7 @@ class GitFiles
 	{
 		$returned = [];
 		foreach ($folders as $folder) {
-			if ($folder === './' || $folder === '') {
+			if ('./' === $folder || '' === $folder) {
 				$returned[] = '/.*/';
 				continue;
 			}

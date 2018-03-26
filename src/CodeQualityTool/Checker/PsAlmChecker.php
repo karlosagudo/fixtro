@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace KarlosAgudo\Fixtro\CodeQualityTool\Checker;
 
-use Symfony\Component\Process\ProcessBuilder;
+use Symfony\Component\Process\Process;
 
 class PsAlmChecker extends AbstractChecker implements CheckerInterface
 {
@@ -16,6 +16,8 @@ class PsAlmChecker extends AbstractChecker implements CheckerInterface
 		'Checks took',
 		'and used',
 		'INFO: ',
+		'Scanning files',
+		'Analyzing files',
 ];
 
 	/**
@@ -26,24 +28,23 @@ class PsAlmChecker extends AbstractChecker implements CheckerInterface
 	{
 		$ruleFile = $this->findRulesFile();
 		foreach ($this->filesToAnalyze as $file) {
-			$processBuilder = new ProcessBuilder(
+			$process = new Process(
 				[
 					$this->fixtroVendorRootPath.'/bin/php_no_xdebug',
-					$this->fixtroVendorRootPath.'/vendor/vimeo/psalm/bin/psalm',
+					$this->fixtroVendorRootPath.'/bin/psalm',
 					'-c='.$ruleFile,
 					'-m',
 					$file,
 				]
 			);
 
-			$processBuilder->setTimeout(3600);
-			$process = $processBuilder->getProcess();
+			$process->setTimeout(3600);
 			$this->setProcessLine($process->getCommandLine());
 			$process->run(function ($type, $buffer) {
 				$this->outputChecker[] = $buffer;
 			});
 
-			if (!$process->isSuccessful() || strpos(implode('', $this->outputChecker), 'ERROR') !== false) {
+			if (!$process->isSuccessful() || false !== strpos(implode('', $this->outputChecker), 'ERROR')) {
 				$this->errors = $this->outputChecker;
 				$this->errors[] = 'EXECUTED:'.str_replace("'", '', $process->getCommandLine());
 			}

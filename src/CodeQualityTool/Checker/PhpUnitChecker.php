@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace KarlosAgudo\Fixtro\CodeQualityTool\Checker;
 
-use Symfony\Component\Process\ProcessBuilder;
+use Symfony\Component\Process\Process;
 
 class PhpUnitChecker extends AbstractChecker implements CheckerInterface
 {
@@ -30,7 +30,7 @@ class PhpUnitChecker extends AbstractChecker implements CheckerInterface
 	public function process()
 	{
 		$buildFile = $this->findBuildPhpUnitFile();
-		$processBuilder = new ProcessBuilder(
+		$process = new Process(
 			[
 				$this->fixtroVendorRootPath.'/bin/php_no_xdebug',
 				$this->findBinary('phpunit'),
@@ -41,9 +41,8 @@ class PhpUnitChecker extends AbstractChecker implements CheckerInterface
 			]
 		);
 
-		$processBuilder->setWorkingDirectory($this->fixtroVendorRootPath);
-		$processBuilder->setTimeout(3600);
-		$process = $processBuilder->getProcess();
+		$process->setWorkingDirectory($this->fixtroVendorRootPath);
+		$process->setTimeout(3600);
 		$this->setProcessLine($process->getCommandLine());
 		$process->run(function ($type, $buffer) {
 			$this->outputChecker[] = $buffer;
@@ -51,8 +50,8 @@ class PhpUnitChecker extends AbstractChecker implements CheckerInterface
 
 		$this->outputChecker[] = $process->getOutput();
 
-		if (stripos(implode('', $this->outputChecker), 'ERROR') !== false ||
-			stripos(implode('', $this->outputChecker), 'failure') !== false
+		if (false !== stripos(implode('', $this->outputChecker), 'ERROR') ||
+			false !== stripos(implode('', $this->outputChecker), 'failure')
 		) {
 			$this->errors = $this->outputChecker;
 			$this->errors[] = 'EXECUTED:'.str_replace("'", '', $process->getCommandLine());

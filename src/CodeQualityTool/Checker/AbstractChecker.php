@@ -86,6 +86,9 @@ abstract class AbstractChecker
 		}
 
 		foreach ($this->outputChecker as $line) {
+			if (is_array($line)) {
+				$line = implode("\n", $line);
+			}
 			if ($result = $this->filterLines($line)) {
 				$info[] = $result;
 			}
@@ -99,12 +102,8 @@ abstract class AbstractChecker
 	 *
 	 * @return mixed|string
 	 */
-	protected function filterLines($line)
+	protected function filterLines(string $line)
 	{
-		if (is_array($line)) {
-			$line = implode("\n", $line);
-		}
-
 		foreach ($this->filterOutput as $cleanFilter) {
 			if (preg_match("/$cleanFilter/", $line)) {
 				return false;
@@ -177,7 +176,7 @@ abstract class AbstractChecker
 	 *
 	 * @return string
 	 */
-	protected function findBinary($binaryFile): string
+	protected function findBinary(string $binaryFile): string
 	{
 		if (file_exists(__DIR__.'/../../../../../bin/'.$binaryFile)) {
 			return __DIR__.'/../../../../../bin/'.$binaryFile;
@@ -195,7 +194,7 @@ abstract class AbstractChecker
 	 *
 	 * @return array
 	 */
-	protected function returnErrors($errors): array
+	protected function returnErrors(array $errors): array
 	{
 		foreach ($this->errors as $line) {
 			if ($result = $this->filterLines($line)) {

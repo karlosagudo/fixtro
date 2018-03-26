@@ -4,5 +4,6 @@ bin/
 !bin/fixtro
 !bin/php_no_xdebug
 !bin/fixtro-precommit
+!bin/fixtro-postmerge
 build/logs/
 .php_cs.cache

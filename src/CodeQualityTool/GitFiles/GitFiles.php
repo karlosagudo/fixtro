@@ -20,7 +20,7 @@ class GitFiles
 	 *
 	 * @param array $config
 	 */
-	public function __construct($config)
+	public function __construct(array $config)
 	{
 		$this->ignoreFolders = $this->extractFolders($config['ignoreFolders']);
 		$this->sourceFolders = $this->extractFolders($config['sourceFolders']);
@@ -39,6 +39,13 @@ class GitFiles
 		$precommitFiles = array_merge($output, $movedOutput);
 
 		return $this->removeIgnored($precommitFiles);
+	}
+
+	public function getMergedFiles(): array
+	{
+		exec('git diff-tree -r --name-only --no-commit-id ORIG_HEAD HEAD', $output);
+
+		return $this->removeIgnored($output);
 	}
 
 	public function stashFilesBeforePrecommit()
@@ -75,9 +82,9 @@ class GitFiles
 	 *
 	 * @return array
 	 */
-	private function removeIgnored($precommitFiles): array
+	private function removeIgnored(array $precommitFiles): array
 	{
-		return array_filter($precommitFiles, function ($elem) {
+		return array_filter($precommitFiles, function (string $elem) {
 			foreach ($this->ignoreFolders as $ignoreFolder) {
 				if (preg_match($ignoreFolder, $elem)) {
 					return false;
@@ -103,7 +110,7 @@ class GitFiles
 	{
 		$returned = [];
 		foreach ($folders as $folder) {
-			if ($folder === './' || $folder === '') {
+			if ('./' === $folder || '' === $folder) {
 				$returned[] = '/.*/';
 				continue;
 			}

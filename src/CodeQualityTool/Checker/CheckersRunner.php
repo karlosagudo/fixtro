@@ -41,7 +41,7 @@ class CheckersRunner
 			$eventAnalyzerName = $this->getEventName($checker);
 			$preExecute = $this->context->throwEvent('analyzer.'.$eventAnalyzerName.'.pre',
 													 $this->context->getConfig(), []);
-			if ($preExecute === 'PASS-SIGNAL') {
+			if ('PASS-SIGNAL' === $preExecute) {
 				$this->context->getLogger()->info('[SKIPPED] Skipped by event');
 				continue;
 			}
@@ -50,7 +50,7 @@ class CheckersRunner
 			list($info, $errors) = $checker->showResults();
 			$result = $this->context->throwEvent('analyzer.'.$eventAnalyzerName.'.after', $info, $errors);
 
-			if (get_class($result) === FixtroEvent::class) {
+			if (FixtroEvent::class === get_class($result)) {
 				$info = $result->getInfo();
 				$errors = $result->getError();
 			}
@@ -73,7 +73,7 @@ class CheckersRunner
 	 *
 	 * @return string
 	 */
-	private function getEventName($checker): string
+	private function getEventName(AbstractChecker $checker): string
 	{
 		$shortName = (new \ReflectionClass($checker))->getShortName();
 		$analyzerConfigKey = lcfirst($shortName);

@@ -11,25 +11,17 @@ use Behat\Behat\Context\Context;
  */
 class FeatureContext implements Context
 {
+	/** @var string */
 	private $behatBin;
+	/** @var string */
 	private $behatConf;
+	/** @var array */
 	private $results;
-
-	/**
-	 * Initializes context.
-	 *
-	 * Every scenario gets its own context instance.
-	 * You can also pass arbitrary arguments to the
-	 * context constructor through behat.yml.
-	 */
-	public function __construct()
-	{
-	}
 
 	/**
 	 * @Given Behat is installed
 	 */
-	public function behatIsInstalled()
+	public function behatIsInstalled(): bool
 	{
 		$this->behatBin = __DIR__.'/../../../bin/behat';
 
@@ -39,7 +31,7 @@ class FeatureContext implements Context
 	/**
 	 * @Given There is a behat config file
 	 */
-	public function thereIsABehatConfigFile()
+	public function thereIsABehatConfigFile(): bool
 	{
 		$this->behatConf = __DIR__.'/../../../build/behat.yml';
 
@@ -49,7 +41,7 @@ class FeatureContext implements Context
 	/**
 	 * @When I run behat
 	 */
-	public function iRunBehat()
+	public function iRunBehat(): bool
 	{
 		//exec($this->behatBin.' -c '.$this->behatConf, $this->results); Infinite loop , hehehe
 		$this->results[] = 'whtaever';
@@ -60,7 +52,7 @@ class FeatureContext implements Context
 	/**
 	 * @Then I get results
 	 */
-	public function iGetResults()
+	public function iGetResults(): bool
 	{
 		return !empty($this->results);
 	}

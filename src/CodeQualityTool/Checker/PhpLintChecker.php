@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace KarlosAgudo\Fixtro\CodeQualityTool\Checker;
 
-use Symfony\Component\Process\ProcessBuilder;
+use Symfony\Component\Process\Process;
 
 class PhpLintChecker extends AbstractChecker implements CheckerInterface
 {
@@ -35,10 +35,9 @@ class PhpLintChecker extends AbstractChecker implements CheckerInterface
 			implode(' ', $this->filesToAnalyze),
 		];
 
-		$processBuilder = new ProcessBuilder($command);
-		$processBuilder->enableOutput();
-		$processBuilder->setWorkingDirectory($this->fixtroVendorRootPath);
-		$process = $processBuilder->getProcess();
+		$process = new Process($command);
+		$process->enableOutput();
+		$process->setWorkingDirectory($this->fixtroVendorRootPath);
 		$this->setProcessLine($process->getCommandLine());
 		$process->run(function ($type, $buffer) {
 			$this->outputChecker[] = $buffer;

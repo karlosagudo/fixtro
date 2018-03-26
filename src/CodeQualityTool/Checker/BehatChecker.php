@@ -8,7 +8,7 @@ declare(strict_types=1);
 
 namespace KarlosAgudo\Fixtro\CodeQualityTool\Checker;
 
-use Symfony\Component\Process\ProcessBuilder;
+use Symfony\Component\Process\Process;
 
 class BehatChecker extends AbstractChecker implements CheckerInterface
 {
@@ -35,7 +35,7 @@ class BehatChecker extends AbstractChecker implements CheckerInterface
 			return;
 		}
 
-		$processBuilder = new ProcessBuilder(
+		$process = new Process(
 			[
 				$this->fixtroVendorRootPath.'/bin/php_no_xdebug',
 				$this->findBinary('behat'),
@@ -47,16 +47,15 @@ class BehatChecker extends AbstractChecker implements CheckerInterface
 			]
 		);
 
-		$processBuilder->setWorkingDirectory($this->projectPath);
-		$processBuilder->setTimeout(3600);
-		$process = $processBuilder->getProcess();
+		$process->setWorkingDirectory($this->projectPath);
+		$process->setTimeout(3600);
 		$this->setProcessLine($process->getCommandLine());
 		$process->run(function ($type, $buffer) {
 			$this->outputChecker[] = $buffer;
 		});
 
 		$exit = implode('', $this->outputChecker);
-		if (strpos($exit, 'Failed scenarios') !== false) {
+		if (false !== strpos($exit, 'Failed scenarios')) {
 			$this->errors[] = sprintf('<error>%s</error>', trim($exit));
 		}
 	}

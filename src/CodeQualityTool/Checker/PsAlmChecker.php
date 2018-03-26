@@ -18,7 +18,8 @@ class PsAlmChecker extends AbstractChecker implements CheckerInterface
 		'INFO: ',
 		'Scanning files',
 		'Analyzing files',
-];
+		'Psalm was able to infer types',
+	];
 
 	/**
 	 * @SuppressWarnings(PHPMD.UnusedLocalVariable)

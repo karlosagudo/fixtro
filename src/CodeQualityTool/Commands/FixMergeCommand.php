@@ -23,22 +23,19 @@ class FixMergeCommand extends GeneralCommand
 			->setDescription('Checks post merged files');
 	}
 
+	/**
+	 * @SuppressWarnings(PHPMD.UnusedFormalParameter)
+	 */
 	public function execute(InputInterface $input, OutputInterface $output): int
 	{
 		$gitFiles = new GitFiles($this->config);
 		$files = $gitFiles->getMergedFiles();
 
-		print_r($files);
+		if (in_array('composer.lock', $files)) {
+			$this->logger->info('Updating Composer dependencies');
+			exec($this->getProjectRootPath().'/bin/composer install');
+		}
 
-		return count($files);
-//		die();
-//
-//		$return = $this->executeCheckersAndShowResult($output, $files);
-//
-//		if (0 === $return) { //everything went well so we add changed files
-//			$gitFiles->stageUpdatedFiles();
-//		}
-//
-//		return $return;
+		return 1;
 	}
 }

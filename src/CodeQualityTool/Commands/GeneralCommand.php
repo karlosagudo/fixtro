@@ -34,7 +34,7 @@ class GeneralCommand extends Command
 	private $context;
 
 	/** @var array */
-	protected $analyzers;
+	protected $analyzers = [];
 
 	/**
 	 * @param InputInterface  $input
@@ -90,6 +90,8 @@ class GeneralCommand extends Command
 	 *
 	 * @throws \KarlosAgudo\Fixtro\CodeQualityTool\Exceptions\ExecutionStoppedByEvent
 	 * @throws \InvalidArgumentException
+	 *
+	 * @psalm-suppress RedundantConditionGivenDocblockType
 	 */
 	public function createCheckers(array $files, OutputInterface $output)
 	{
@@ -143,7 +145,7 @@ class GeneralCommand extends Command
 	}
 
 	/**
-	 * @param $analyzer
+	 * @param array $analyzer
 	 *
 	 * @throws \InvalidArgumentException
 	 */
@@ -154,6 +156,12 @@ class GeneralCommand extends Command
 		}
 	}
 
+	/**
+	 * @param GeneralFilters $filterClass
+	 * @param string         $filter
+	 *
+	 * @return mixed
+	 */
 	private function applyFilter(GeneralFilters $filterClass, string $filter)
 	{
 		if (!method_exists($filterClass, $filter)) {
@@ -163,6 +171,11 @@ class GeneralCommand extends Command
 		return call_user_func([$filterClass, $filter]);
 	}
 
+	/**
+	 * @param array $analyzer
+	 *
+	 * @return array
+	 */
 	private function getParameters(array $analyzer): array
 	{
 		$parameters = [];
@@ -182,13 +195,13 @@ class GeneralCommand extends Command
 	}
 
 	/**
-	 * @param $analyzerConfigKey
+	 * @param string $analyzerConfigKey
 	 *
 	 * @return bool
 	 */
 	private function isDisabledAnalyzerInConfig(string $analyzerConfigKey): bool
 	{
 		return isset($this->config[$analyzerConfigKey], $this->config[$analyzerConfigKey]['enable']) &&
-			$this->config[$analyzerConfigKey]['enable'] === false;
+			false === $this->config[$analyzerConfigKey]['enable'];
 	}
 }

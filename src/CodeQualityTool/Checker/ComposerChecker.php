@@ -15,11 +15,11 @@ class ComposerChecker extends AbstractChecker implements CheckerInterface
 		$composerLockDetected = false;
 
 		foreach ($this->filesToAnalyze as $file) {
-			if ($file === 'composer.json') {
+			if ('composer.json' === $file) {
 				$composerJsonDetected = true;
 			}
 
-			if ($file === 'composer.lock') {
+			if ('composer.lock' === $file) {
 				$composerLockDetected = true;
 			}
 		}

@@ -92,7 +92,7 @@ final class FixPreCommitCommand extends GeneralCommand
 
 		$return = $this->executeCheckersAndShowResult($output, $files);
 
-		if ($return === 0) { //everything went well so we add changed files
+		if (0 === $return) { //everything went well so we add changed files
 			$gitFiles->stageUpdatedFiles();
 		}
 

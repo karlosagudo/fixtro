@@ -187,7 +187,7 @@ class CommandContext
 	/**
 	 * @param string     $eventName
 	 * @param array      $infoMessages
-	 * @param null|array $errors
+	 * @param array|null $errors
 	 *
 	 * @throws ExecutionStoppedByEvent
 	 */

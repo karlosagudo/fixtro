@@ -40,7 +40,7 @@ class CodeStyleFixer extends AbstractChecker implements CheckerInterface
 	}
 
 	/**
-	 * @param $file
+	 * @param string $file
 	 *
 	 * @todo check RuleSet and apply
 	 *

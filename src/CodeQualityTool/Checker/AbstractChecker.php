@@ -98,7 +98,7 @@ abstract class AbstractChecker
 	}
 
 	/**
-	 * @param $line
+	 * @param string $line
 	 *
 	 * @return mixed|string
 	 */
@@ -172,7 +172,7 @@ abstract class AbstractChecker
 	/**
 	 * Check if the project already has phpunit, or phpcsfixer, or other to use the local one.
 	 *
-	 * @param $binaryFile
+	 * @param string $binaryFile
 	 *
 	 * @return string
 	 */
@@ -190,7 +190,7 @@ abstract class AbstractChecker
 	}
 
 	/**
-	 * @param $errors
+	 * @param array $errors
 	 *
 	 * @return array
 	 */

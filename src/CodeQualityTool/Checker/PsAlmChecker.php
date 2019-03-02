@@ -34,6 +34,7 @@ class PsAlmChecker extends AbstractChecker implements CheckerInterface
 					$this->fixtroVendorRootPath.'/bin/php_no_xdebug',
 					$this->fixtroVendorRootPath.'/bin/psalm',
 					'-c='.$ruleFile,
+					'--show-info=false',
 					'-m',
 					$file,
 				]

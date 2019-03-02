@@ -48,7 +48,7 @@ class PhpStanChecker extends AbstractChecker implements CheckerInterface
 
 		$lastText = end($this->outputChecker);
 
-		if (!$process->isSuccessful() || false !== strpos($lastText, '[ERROR]')) {
+		if (!$process->isSuccessful() || false !== strpos($lastText, 'ERROR')) {
 			$output = array_filter($this->outputChecker, function ($element) {
 				return !preg_match('/\d+\%/', $element);
 			});

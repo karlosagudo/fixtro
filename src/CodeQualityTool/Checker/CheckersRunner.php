@@ -69,7 +69,7 @@ class CheckersRunner
 	}
 
 	/**
-	 * @param $checker
+	 * @param AbstractChecker $checker
 	 *
 	 * @return string
 	 */

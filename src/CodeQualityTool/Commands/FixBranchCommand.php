@@ -78,6 +78,7 @@ final class FixBranchCommand extends GeneralCommand
 	 *
 	 * @throws \Exception
 	 * @throws \InvalidArgumentException
+	 * @psalm-suppress PossiblyInvalidArgument
 	 */
 	public function execute(InputInterface $input, OutputInterface $output): int
 	{

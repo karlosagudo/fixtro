@@ -137,7 +137,7 @@ final class FixEntireCommand extends GeneralCommand
 	}
 
 	/**
-	 * @param $srcFolder
+	 * @param array $srcFolder
 	 *
 	 * @return array|string
 	 */

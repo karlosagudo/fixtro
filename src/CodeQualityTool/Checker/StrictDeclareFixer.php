@@ -40,7 +40,7 @@ class StrictDeclareFixer extends AbstractChecker implements CheckerInterface
 	}
 
 	/**
-	 * @param $file
+	 * @param string $file
 	 *
 	 * @return Process
 	 * @psalm-suppress TypeCoercion

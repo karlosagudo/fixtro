@@ -178,13 +178,10 @@ abstract class AbstractChecker
 	 */
 	protected function findBinary(string $binaryFile): string
 	{
-		if (file_exists(__DIR__.'/../../../../../bin/'.$binaryFile)) {
-			return __DIR__.'/../../../../../bin/'.$binaryFile;
-		}
-
-		if (file_exists(__DIR__.'/../../../../../../bin/'.$binaryFile)) {
-			return __DIR__.'/../../../../../../bin/'.$binaryFile;
-		}
+	    //first we try locally in the project, if not, from fixtro dependencies
+        if (file_exists($this->getProjectPath().'/bin/'.$binaryFile)) {
+            return $this->getProjectPath().'/bin/'.$binaryFile;
+        }
 
 		return $this->fixtroVendorRootPath.'/bin/'.$binaryFile;
 	}

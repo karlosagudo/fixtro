@@ -78,7 +78,7 @@ class GitFiles
 	}
 
 	/**
-	 * @param $precommitFiles
+	 * @param array $precommitFiles
 	 *
 	 * @return array
 	 */

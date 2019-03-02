@@ -21,7 +21,14 @@ class PsAlmCheckerTest extends GeneralCheckerTestCase
 
 		$exit = $this->executeChecker($filesToAnalyzer, PsAlmChecker::class, true);
 
-		self::assertContains('ERROR', $exit[0][3]);
+        $testKOString = $exit[0][3];
+
+		if (isset($exit[0][4])) {
+		    $testKOString .= $exit[0][4];
+        }
+
+
+		self::assertContains('ERROR', $testKOString);
 	}
 
 	public function tearDown()

@@ -331,7 +331,7 @@ class InstallCommand extends Command
 	}
 
 	/**
-	 * @param $buildFolder
+	 * @param string $buildFolder
 	 *
 	 * @return bool
 	 */
